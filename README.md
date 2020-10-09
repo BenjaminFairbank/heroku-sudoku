@@ -1,5 +1,7 @@
 # README
 
+[![Codeship Status for BenjaminFairbank/heroku-sudoku](https://app.codeship.com/projects/d97cbb50-ec07-0138-82eb-22560eb9152f/status?branch=master)](https://app.codeship.com/projects/413191)
+
 Application: Heroku-Sudoku is an app that allows you to play sudoku thru the heroku hosting service.
 
 Author: Benjamin Aron Fairbank
