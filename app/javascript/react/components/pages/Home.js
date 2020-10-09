@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Typography,
   Container,
@@ -13,7 +14,7 @@ import {
   FormControl,
   Select
 } from "@material-ui/core";
-import GridOnIcon from '@material-ui/icons/GridOn';
+import GridOnIcon from '@material-ui/icons/GridOn'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +66,10 @@ const Home = (props) => {
     setSize(event.target.value);
   };
 
+  // const startGame = (diff, siz) => {
+  //
+  // }
+
   return (
     <div className={classes.root}>
       <Container>
@@ -108,11 +113,12 @@ const Home = (props) => {
             </Select>
           </FormControl>
           <Button
+            component={Link}
+            to='/play'
             size="large"
             variant="contained"
             color="secondary"
             endIcon={<GridOnIcon />}
-            href="#contained-buttons"
             className={classes.button}
           >
             Play

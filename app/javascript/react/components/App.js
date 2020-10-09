@@ -4,7 +4,8 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Home from './ui/Home'
+import Home from './pages/Home'
+import Play from './pages/Play'
 import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
 
@@ -35,6 +36,7 @@ export const App = (props) => {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/home' component={Home} />
+          <Route exact path='/play' component={Play} />
         </Switch>
       </BrowserRouter>
       <ScrollUpButton />
