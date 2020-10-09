@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { setSize, setDifficulty } from '../../modules/game'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -55,15 +57,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = (props) => {
   const classes = useStyles();
-  const [size, setSize] = useState(2);
-  const [difficulty, setDifficulty] = useState(1);
 
   const handleSizeChange = (event) => {
-    setSize(event.target.value);
+    props.setSize(event.target.value);
   };
 
   const handleDifficultyChange = (event) => {
-    setDifficulty(event.target.value);
+    props.setDifficulty(event.target.value);
   };
 
   return (
@@ -79,29 +79,30 @@ const Home = (props) => {
             Begin playing
           </Typography>
           <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">Size</InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={size}
-              onChange={handleSizeChange}
-              label="Size"
-            >
-              <MenuItem value={1}>Small</MenuItem>
-              <MenuItem value={2}>Medium</MenuItem>
-              <MenuItem value={3}>Large</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">
-              Difficulty
+              Board Dimensions
             </InputLabel>
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={difficulty}
+              value={props.boardSize}
+              onChange={handleSizeChange}
+              label="Board Dimensions"
+            >
+              <MenuItem value={4}>4 x 4</MenuItem>
+              <MenuItem value={9}>9 x 9</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Game Difficulty
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={props.gameDifficulty}
               onChange={handleDifficultyChange}
-              label="Difficulty"
+              label="Game Difficulty"
             >
               <MenuItem value={1}>Easy</MenuItem>
               <MenuItem value={2}>Intermediate</MenuItem>
@@ -125,4 +126,21 @@ const Home = (props) => {
   )
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    boardSize: state.game.boardSize,
+    gameDifficulty: state.game.gameDifficulty
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSize: (event) => dispatch(setSize(event)),
+    setDifficulty: (event) => dispatch(setDifficulty(event))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
