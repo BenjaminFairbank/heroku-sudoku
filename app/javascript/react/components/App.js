@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { CssBaseline } from '@material-ui/core';
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from '@material-ui/core/styles';
+import { Provider } from 'react-redux'
+import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+import { CssBaseline } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Home from './pages/Home'
 import Play from './pages/Play'
 import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
 
-export const App = (props) => {
-  const [darkMode, setDarkMode] = useState(true);
+export const App = props => {
 
   const theme = createMuiTheme({
     palette: {
@@ -20,28 +21,35 @@ export const App = (props) => {
       secondary: {
         main: '#edc0ff',
       },
-      type: darkMode ? "dark" : "light",
+      type: props.darkMode ? "dark" : "light",
     },
   });
 
-  const handleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <TopBar darkMode={darkMode} handleDarkMode={handleDarkMode} />
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/home' component={Home} />
-          <Route exact path='/play' component={Play} />
-        </Switch>
-      </BrowserRouter>
-      <ScrollUpButton />
-    </ThemeProvider>
+    <Provider store={props.store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <TopBar />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/play' component={Play} />
+          </Switch>
+        </BrowserRouter>
+        <ScrollUpButton />
+      </ThemeProvider>
+    </Provider>
   )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    darkMode: state.app.darkMode
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(App)

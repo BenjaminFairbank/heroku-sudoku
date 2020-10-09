@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { switchLighting } from '../../modules/app'
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -46,12 +48,12 @@ const TopBar = (props) => {
               </Typography>
               <Switch
                 checked={props.darkMode}
-                onChange={props.handleDarkMode}
+                onChange={props.switchLighting}
                 color="secondary"
                 name="checkedB"
                 inputProps={{ "aria-label": "primary checkbox" }}
               />
-              {props.darkMode ? <Brightness2Icon /> : <BrightnessMediumIcon />}
+              {props.mode ? <Brightness2Icon /> : <BrightnessMediumIcon />}
               <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
@@ -61,4 +63,20 @@ const TopBar = (props) => {
     </>
   );
 }
-export default TopBar
+
+const mapStateToProps = (state) => {
+  return {
+    darkMode: state.app.darkMode
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    switchLighting: () => dispatch(switchLighting())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopBar)
