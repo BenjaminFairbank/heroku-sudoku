@@ -9,7 +9,7 @@ import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
 
 export const App = (props) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const theme = createMuiTheme({
     palette: {
