@@ -55,20 +55,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = (props) => {
   const classes = useStyles();
+  const [size, setSize] = useState(2);
   const [difficulty, setDifficulty] = useState(1);
-  const [size, setSize] = useState(1);
-
-  const handleDifficultyChange = (event) => {
-    setDifficulty(event.target.value);
-  };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
   };
 
-  // const startGame = (diff, siz) => {
-  //
-  // }
+  const handleDifficultyChange = (event) => {
+    setDifficulty(event.target.value);
+  };
 
   return (
     <div className={classes.root}>
@@ -83,22 +79,6 @@ const Home = (props) => {
             Begin playing
           </Typography>
           <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Difficulty
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={difficulty}
-              onChange={handleDifficultyChange}
-              label="Difficulty"
-            >
-              <MenuItem value={1}>Easy</MenuItem>
-              <MenuItem value={2}>Normal</MenuItem>
-              <MenuItem value={3}>Hard</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">Size</InputLabel>
             <Select
               labelId="demo-simple-select-outlined-label"
@@ -110,6 +90,22 @@ const Home = (props) => {
               <MenuItem value={1}>Small</MenuItem>
               <MenuItem value={2}>Medium</MenuItem>
               <MenuItem value={3}>Large</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Difficulty
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={difficulty}
+              onChange={handleDifficultyChange}
+              label="Difficulty"
+            >
+              <MenuItem value={1}>Easy</MenuItem>
+              <MenuItem value={2}>Intermediate</MenuItem>
+              <MenuItem value={3}>Hard</MenuItem>
             </Select>
           </FormControl>
           <Button
