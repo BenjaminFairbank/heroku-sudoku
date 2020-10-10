@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { setSize, setDifficulty } from '../../modules/game'
 import { Link } from 'react-router-dom'
