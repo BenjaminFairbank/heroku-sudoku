@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,4 +16,14 @@ const Play = props => {
   )
 }
 
-export default Play
+const mapStateToProps = (state) => {
+  return {
+    boardSize: state.game.boardSize,
+    gameDifficulty: state.game.gameDifficulty
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Play)
