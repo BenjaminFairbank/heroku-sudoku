@@ -28,7 +28,7 @@ const Play = props => {
       width="100"
     ></img>
   }
-  debugger
+  
   return (
     <>
       {fetch}
