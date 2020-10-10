@@ -88,13 +88,16 @@ const postGame = (gameData) => {
         return response.json()
       } else {
         dispatch(postGameRequestFailure())
-        dispatch(displayAlertMessage("Something went wrong."))
-       return { error: 'Something went wrong.' }
+        dispatch(displayAlertMessage("Something went wrong while fetching data."))
+       return { error: 'Something went wrong while fetching data.' }
       }
     })
     .then(gameBody => {
       if(!gameBody.error) {
         dispatch(postGameRequestSuccess(gameBody))
+      } else {
+        dispatch(postGameRequestFailure())
+        dispatch(displayAlertMessage(gameBody.error))
       }
     })
   }

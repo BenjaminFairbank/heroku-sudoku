@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+
 import { postGame } from '../../modules/game'
+
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +22,7 @@ const Play = props => {
     })
   }, [])
 
-  let fetch = <p>PLAY</p>
+  let fetch = ''
   if (props.isFetching) {
     fetch = <img
       src="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif"
@@ -27,8 +30,10 @@ const Play = props => {
       height="100"
       width="100"
     ></img>
+  } else if (props.gameBody !== []) {
+    fetch = <Typography variant="h5">{props.gameBody}</Typography>
   }
-  
+
   return (
     <>
       {fetch}
