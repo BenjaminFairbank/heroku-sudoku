@@ -3,6 +3,8 @@ import { Provider } from 'react-redux'
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+import { closeAlertMessage } from '../modules/alertMessage'
+
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
@@ -10,6 +12,7 @@ import Home from './pages/Home'
 import Play from './pages/Play'
 import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
+import AlertMessage from './ui/AlertMessage'
 
 export const App = props => {
 
@@ -25,11 +28,22 @@ export const App = props => {
     },
   });
 
+  let alertMessageDiv
+
+  if (props.alertMessage){
+    alertMessageDiv =
+    <AlertMessage
+      message={props.alertMessage}
+      closeAlertMessage={props.closeAlertMessage}
+    />
+  }
+
   return (
     <Provider store={props.store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <TopBar />
+        {alertMessageDiv}
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Home} />
@@ -45,11 +59,18 @@ export const App = props => {
 
 const mapStateToProps = (state) => {
   return {
-    darkMode: state.app.darkMode
+    darkMode: state.app.darkMode,
+    alertMessage: state.alertMessage.message
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    closeAlertMessage: () => dispatch(closeAlertMessage())
   }
 }
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(App)
