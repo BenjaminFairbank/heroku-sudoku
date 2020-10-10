@@ -24,6 +24,9 @@ export const App = props => {
       secondary: {
         main: '#edc0ff',
       },
+      tertiary: {
+        main: '#a6bdf7'
+      },
       type: props.darkMode ? "dark" : "light",
     },
   });
@@ -42,9 +45,9 @@ export const App = props => {
     <Provider store={props.store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <TopBar />
-        {alertMessageDiv}
         <BrowserRouter>
+          <TopBar />
+          {alertMessageDiv}
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />

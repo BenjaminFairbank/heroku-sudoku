@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { switchLighting } from '../../modules/app'
+import { Link } from 'react-router-dom'
+
+import { toggleDarkMode } from '../../modules/app'
+
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -18,6 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: 'white',
+    fontWeight: 'bold',
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+    '&:focus': {
+      color: 'white',
+    },
   },
 }));
 
@@ -43,12 +54,17 @@ const TopBar = (props) => {
         <ElevationScroll {...props}>
           <AppBar>
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
+              <Typography
+                component={Link}
+                to='/'
+                variant="h6"
+                className={classes.title}
+              >
                 Heroku Sudoku
               </Typography>
               <Switch
                 checked={props.darkMode}
-                onChange={props.switchLighting}
+                onChange={props.toggleDarkMode}
                 color="secondary"
                 name="checkedB"
                 inputProps={{ "aria-label": "primary checkbox" }}
@@ -72,7 +88,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    switchLighting: () => dispatch(switchLighting())
+    toggleDarkMode: () => dispatch(toggleDarkMode())
   }
 }
 

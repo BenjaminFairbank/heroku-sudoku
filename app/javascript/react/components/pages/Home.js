@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   text1: {
-    color: '#a6bdf7',
+    color: theme.palette.tertiary.main,
     paddingTop: 40,
     marginBottom: 40,
     fontWeight: 'bold',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     height: 300,
     width: 250,
-    backgroundColor: '#a6bdf7',
+    backgroundColor: theme.palette.tertiary.main,
   },
   text2: {
     padding: 20,
@@ -48,7 +48,15 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     minWidth: 140,
     color: 'white',
-  }
+    '&:hover': {
+      color: theme.palette.secondary.main,
+      backgroundColor: 'white',
+    },
+    '&:focus': {
+      color: theme.palette.secondary.main,
+      backgroundColor: 'white',
+    },
+  },
 }));
 
 
