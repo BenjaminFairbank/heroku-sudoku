@@ -19,10 +19,7 @@ import {
 import GridOnIcon from '@material-ui/icons/GridOn'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-
-  },
-  box1: {
+  box: {
     textAlign: 'center',
   },
   text1: {
@@ -67,62 +64,60 @@ const Home = (props) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Container>
-        <Box className={classes.box1}>
-          <Typography variant="h5" className={classes.text1}>
-            Welcome to Heroku Sudoku!
-          </Typography>
-        </Box>
-        <Paper elevation={3} className={classes.card}>
-          <Typography variant="h5" className={classes.text2}>
-            Begin playing
-          </Typography>
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Board Dimensions
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.boardSize}
-              onChange={handleSizeChange}
-              label="Board Dimensions"
-            >
-              <MenuItem value={4}>4 x 4</MenuItem>
-              <MenuItem value={9}>9 x 9</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Game Difficulty
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.gameDifficulty}
-              onChange={handleDifficultyChange}
-              label="Game Difficulty"
-            >
-              <MenuItem value={1}>Easy</MenuItem>
-              <MenuItem value={2}>Intermediate</MenuItem>
-              <MenuItem value={3}>Hard</MenuItem>
-            </Select>
-          </FormControl>
-          <Button
-            component={Link}
-            to='/play'
-            size="large"
-            variant="contained"
-            color="secondary"
-            endIcon={<GridOnIcon />}
-            className={classes.button}
+    <Container>
+      <Box className={classes.box}>
+        <Typography variant="h5" className={classes.text1}>
+          Welcome to Heroku Sudoku!
+        </Typography>
+      </Box>
+      <Paper elevation={3} className={classes.card}>
+        <Typography variant="h5" className={classes.text2}>
+          Begin playing
+        </Typography>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Board Dimensions
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={props.boardSize}
+            onChange={handleSizeChange}
+            label="Board Dimensions"
           >
-            Play
-          </Button>
-        </Paper>
-      </Container>
-    </div>
+            <MenuItem value={4}>4 x 4</MenuItem>
+            <MenuItem value={9}>9 x 9</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Game Difficulty
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={props.gameDifficulty}
+            onChange={handleDifficultyChange}
+            label="Game Difficulty"
+          >
+            <MenuItem value={1}>Easy</MenuItem>
+            <MenuItem value={2}>Intermediate</MenuItem>
+            <MenuItem value={3}>Hard</MenuItem>
+          </Select>
+        </FormControl>
+        <Button
+          component={Link}
+          to='/play'
+          size="large"
+          variant="contained"
+          color="secondary"
+          endIcon={<GridOnIcon />}
+          className={classes.button}
+        >
+          Play
+        </Button>
+      </Paper>
+    </Container>
   )
 }
 
