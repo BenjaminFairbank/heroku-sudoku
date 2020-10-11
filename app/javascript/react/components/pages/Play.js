@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Container, Box } from '@material-ui/core';
 
 import BoardNineByNine from '../ui/BoardNineByNine'
+import BoardFourByFour from '../ui/BoardFourByFour'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -29,29 +30,19 @@ const Play = props => {
     })
   }, [])
 
-  let fetch = ''
-  if (props.isFetching) {
-    fetch = <img
-      src="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif"
-      alt="loading-icon"
-      height="100"
-      width="100"
-    ></img>
-  } else if (props.gameBody !== []) {
-    // fetch = <Typography variant="h5">{props.gameBody}</Typography>
-    fetch =
-      <Container className={classes.container}>
-        <Box className={classes.box}>
-          <BoardNineByNine />
-        </Box>
-      </Container>
+  let board
+  if (props.boardSize === 9) {
+    board = <BoardNineByNine />
+  } else {
+    board = <BoardFourByFour />
   }
 
   return (
-    <>
-      <Typography variant="h5">{props.gameBody}</Typography>
-      {fetch}
-    </>
+    <Container className={classes.container}>
+      <Box className={classes.box}>
+        {board}
+      </Box>
+    </Container>
   )
 }
 
@@ -59,8 +50,6 @@ const mapStateToProps = (state) => {
   return {
     boardSize: state.game.boardSize,
     gameDifficulty: state.game.gameDifficulty,
-    gameBody: state.game.gameBody,
-    isFetching: state.game.isFetching
   }
 }
 

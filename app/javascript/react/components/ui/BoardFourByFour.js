@@ -10,11 +10,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.tertiary.main,
   },
   paper: {
-    height: 34,
-    width: 34,
+    height: 77,
+    width: 77,
     textAlign: 'center',
-    paddingTop: 2,
     backgroundColor: theme.palette.quaternary.main,
+    paddingTop: 5,
   },
   gridContainer: {
     height: 320,
@@ -26,23 +26,23 @@ const useStyles = makeStyles((theme) => ({
   },
   vertDivThick: {
     backgroundColor: theme.palette.tertiary.main,
-    width: 4,
+    width: 6,
   },
   vertDivThin: {
     backgroundColor: theme.palette.tertiary.main,
-    width: 1,
+    width: 3,
   },
   horzDivThick: {
     backgroundColor: theme.palette.tertiary.main,
-    height: 4,
+    height: 6,
   },
   horzDivThin: {
     backgroundColor: theme.palette.tertiary.main,
-    height: 1,
+    height: 3,
   },
 }));
 
-const BoardNineByNine = props => {
+const BoardFourByFour = props => {
   const classes = useStyles();
 
   let boardMap = props.gameBody.map(row => {
@@ -50,9 +50,9 @@ const BoardNineByNine = props => {
     let formRow = row.map(value => {
 
       return (
-        <Grid item xs={(4/3)}>
+        <Grid item xs={2.999}>
           <Paper className={classes.paper}>
-            <Typography variant="h6" className={classes.text}>
+            <Typography variant="h2" className={classes.text}>
               {value}
             </Typography>
           </Paper>
@@ -63,13 +63,8 @@ const BoardNineByNine = props => {
     const smallVerticalDivider = <div className={classes.vertDivThin}></div>
     const largeVerticalDivider = <div className={classes.vertDivThick}></div>
 
-    formRow.splice(8, 0, smallVerticalDivider)
-    formRow.splice(7, 0, smallVerticalDivider)
-    formRow.splice(6, 0, largeVerticalDivider)
-    formRow.splice(5, 0, smallVerticalDivider)
-    formRow.splice(4, 0, smallVerticalDivider)
-    formRow.splice(3, 0, largeVerticalDivider)
-    formRow.splice(2, 0, smallVerticalDivider)
+    formRow.splice(3, 0, smallVerticalDivider)
+    formRow.splice(2, 0, largeVerticalDivider)
     formRow.splice(1, 0, smallVerticalDivider)
 
     return (
@@ -89,13 +84,8 @@ const BoardNineByNine = props => {
       <div className={classes.horzDivThick}></div>
     </Grid>
 
-  boardMap.splice(8, 0, smallHorizontalDivider)
-  boardMap.splice(7, 0, smallHorizontalDivider)
-  boardMap.splice(6, 0, largeHorizontalDivider)
-  boardMap.splice(5, 0, smallHorizontalDivider)
-  boardMap.splice(4, 0, smallHorizontalDivider)
-  boardMap.splice(3, 0, largeHorizontalDivider)
-  boardMap.splice(2, 0, smallHorizontalDivider)
+  boardMap.splice(3, 0, smallHorizontalDivider)
+  boardMap.splice(2, 0, largeHorizontalDivider)
   boardMap.splice(1, 0, smallHorizontalDivider)
 
   let display
@@ -130,4 +120,4 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   null
-)(BoardNineByNine)
+)(BoardFourByFour)
