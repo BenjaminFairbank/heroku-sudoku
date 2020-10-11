@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Grid, Card, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles'
+import { Paper, Grid, Card, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BoardNineByNine = props => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   let boardMap = props.gameBody.map(row => {
 

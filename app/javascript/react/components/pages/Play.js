@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import { postGame } from '../../modules/game'
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Container, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Container, Box } from '@material-ui/core'
 
 import BoardNineByNine from '../ui/BoardNineByNine'
 import BoardFourByFour from '../ui/BoardFourByFour'
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Play = props => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   useEffect(() => {
     props.postGame({

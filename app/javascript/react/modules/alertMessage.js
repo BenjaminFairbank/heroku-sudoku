@@ -1,5 +1,5 @@
 const initialState = {
-  message: ""
+  message: ''
 }
 
 const alertMessage = (state = initialState, action) => {

@@ -5,8 +5,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { closeAlertMessage } from '../modules/alertMessage'
 
-import { CssBaseline } from '@material-ui/core';
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { CssBaseline } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import Home from './pages/Home'
 import Play from './pages/Play'

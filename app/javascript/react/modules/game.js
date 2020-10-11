@@ -88,7 +88,7 @@ const postGame = (gameData) => {
         return response.json()
       } else {
         dispatch(postGameRequestFailure())
-        dispatch(displayAlertMessage("Something went wrong while fetching data."))
+        dispatch(displayAlertMessage('Something went wrong while fetching data.'))
        return { error: 'Something went wrong while fetching data.' }
       }
     })

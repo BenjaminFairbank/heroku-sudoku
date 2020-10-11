@@ -1,26 +1,26 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { toggleDarkMode } from '../../modules/app'
 
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Switch from '@material-ui/core/Switch';
-import Button from '@material-ui/core/Button';
-import Brightness2Icon from "@material-ui/icons/Brightness2";
-import BrightnessMediumIcon from "@material-ui/icons/BrightnessMedium";
+import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import { AppBar,
+  Toolbar,
+  Typography,
+  useScrollTrigger,
+  Switch,
+  Button,
+  Box
+} from '@material-ui/core'
+import { Brightness2, BrightnessMedium } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   title: {
-    flexGrow: 1,
     color: 'white',
     fontWeight: 'bold',
     '&:hover': {
@@ -30,10 +30,24 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
     },
   },
+  midSpace: {
+    flexGrow: 1,
+  },
+  button: {
+    marginLeft: 15,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
+    },
+    '&:focus': {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
+    },
+  },
 }));
 
 function ElevationScroll(props) {
-  const { children } = props;
+  const { children } = props
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -46,7 +60,7 @@ function ElevationScroll(props) {
 
 
 const TopBar = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <>
@@ -62,15 +76,16 @@ const TopBar = (props) => {
               >
                 Heroku Sudoku
               </Typography>
+              <Box variant="h6" className={classes.midSpace}></Box>
+              <BrightnessMedium />
               <Switch
                 checked={props.darkMode}
                 onChange={props.toggleDarkMode}
                 color="secondary"
-                name="checkedB"
                 inputProps={{ "aria-label": "primary checkbox" }}
               />
-              {props.mode ? <Brightness2Icon /> : <BrightnessMediumIcon />}
-              <Button color="inherit">Login</Button>
+              <Brightness2 />
+              <Button className={classes.button} color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
         </ElevationScroll>

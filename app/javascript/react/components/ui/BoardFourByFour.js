@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Grid, Card, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles'
+import { Paper, Grid, Card, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BoardFourByFour = props => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   let boardMap = props.gameBody.map(row => {
 
@@ -91,10 +91,10 @@ const BoardFourByFour = props => {
   let display
   if (props.isFetching) {
     display = <img
-      src="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif"
-      alt="loading-icon"
-      height="320"
-      width="320"
+      src='https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif'
+      alt='loading-icon'
+      height='320'
+      width='320'
     ></img>
   } else {
     display = boardMap
