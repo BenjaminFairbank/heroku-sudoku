@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Home = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const handleSizeChange = (event) => {
     props.setSize(event.target.value);

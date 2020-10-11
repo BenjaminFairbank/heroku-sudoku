@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
-import Zoom from '@material-ui/core/Zoom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import useScrollTrigger from '@material-ui/core/useScrollTrigger'
+import Fab from '@material-ui/core/Fab'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
+import Zoom from '@material-ui/core/Zoom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,17 +18,17 @@ const useStyles = makeStyles((theme) => ({
 
 function ScrollTop(props) {
   const { children } = props;
-  const classes = useStyles();
+  const classes = useStyles()
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
 
   const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor')
 
     if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   };
 
