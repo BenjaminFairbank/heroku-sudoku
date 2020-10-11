@@ -27,6 +27,12 @@ export const App = props => {
       tertiary: {
         main: '#a6bdf7'
       },
+      quaternary: {
+        main: '#5d7578'
+      },
+      quinary: {
+        main: '#216f91'
+      },
       type: props.darkMode ? "dark" : "light",
     },
   });

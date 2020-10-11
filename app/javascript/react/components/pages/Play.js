@@ -4,11 +4,18 @@ import { connect } from 'react-redux'
 import { postGame } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from "@material-ui/core";
+import { Typography, Container, Box } from '@material-ui/core';
+
+import BoardNineByNine from '../ui/BoardNineByNine'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-
+  container: {
+    paddingTop: 100,
+  },
+  box: {
+    height: 340,
+    width: 340,
+    margin: 'auto',
   },
 }));
 
@@ -31,11 +38,18 @@ const Play = props => {
       width="100"
     ></img>
   } else if (props.gameBody !== []) {
-    fetch = <Typography variant="h5">{props.gameBody}</Typography>
+    // fetch = <Typography variant="h5">{props.gameBody}</Typography>
+    fetch =
+      <Container className={classes.container}>
+        <Box className={classes.box}>
+          <BoardNineByNine />
+        </Box>
+      </Container>
   }
 
   return (
     <>
+      <Typography variant="h5">{props.gameBody}</Typography>
       {fetch}
     </>
   )
