@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
-import { Paper, Grid, Card, Typography } from '@material-ui/core'
+import { Paper, Grid, Card, Typography, CardMedia } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
   horzDivThin: {
     backgroundColor: theme.palette.tertiary.main,
     height: 3,
+  },
+  loading: {
+    height: 320,
+    width: 320,
   },
 }));
 
@@ -90,12 +94,14 @@ const BoardFourByFour = props => {
 
   let display
   if (props.isFetching) {
-    display = <img
-      src='https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif'
-      alt='loading-icon'
-      height='320'
-      width='320'
-    ></img>
+    display =
+      <Card>
+        <CardMedia
+          image="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif"
+          alt="loading-icon"
+          className={classes.loading}
+        ></CardMedia>
+      </Card>
   } else {
     display = boardMap
   }
