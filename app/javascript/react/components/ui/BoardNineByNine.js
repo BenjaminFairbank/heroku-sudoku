@@ -1,7 +1,51 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
-import { Paper, Grid, Card, Typography, CardMedia } from '@material-ui/core'
+import { updateBoard } from '../../modules/game'
+
+import { makeStyles, withStyles } from '@material-ui/core/styles'
+import {
+  Paper,
+  Grid,
+  Card,
+  Typography,
+  CardMedia,
+  Box,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText
+} from '@material-ui/core'
+
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -22,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   text: {
-    color: 'white'
+    color: 'white',
   },
   vertDivThick: {
     backgroundColor: theme.palette.tertiary.main,
@@ -49,19 +93,98 @@ const useStyles = makeStyles((theme) => ({
 const BoardNineByNine = props => {
   const classes = useStyles()
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedSquare, setSelectedSquare] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedSquare({ x: parseInt(event.currentTarget.id.charAt(0)), y: parseInt(event.currentTarget.id.charAt(1)) })
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handlePickValue = (event) => {
+    event.preventDefault()
+    props.updateBoard({
+      x: selectedSquare.x,
+      y: selectedSquare.y,
+      value: event.currentTarget.id
+    })
+    handleClose()
+  }
+
   let boardMap = props.gameBody.map(row => {
 
     let formRow = row.map(square => {
 
-      return (
-        <Grid item xs={(4/3)}>
-          <Paper className={classes.paper}>
-            <Typography variant="h6" className={classes.text}>
-              {square.value}
-            </Typography>
-          </Paper>
-        </Grid>
-      )
+      if (square.given) {
+        return (
+          <Grid item xs={2.999}>
+            <Paper className={classes.paper}>
+              <Typography variant='h6' className={classes.text}>
+                <Box fontWeight="fontWeightBold">{square.value}</Box>
+              </Typography>
+            </Paper>
+          </Grid>
+        )
+      } else {
+        return (
+          <Grid item xs={2.999}>
+            <Paper
+              className={classes.paper}
+              aria-controls="customized-menu"
+              aria-haspopup="true"
+              color="primary"
+              onClick={handleClick}
+              id={`${square.x}${square.y}`}
+            >
+              <Typography variant='h6' className={classes.text}>
+                <Box fontWeight="fontWeightLight">{square.value}</Box>
+              </Typography>
+            </Paper>
+            <StyledMenu
+              id="customized-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <StyledMenuItem id=' ' onClick={handlePickValue}>
+                <ListItemText primary='&nbsp;' />
+              </StyledMenuItem>
+              <StyledMenuItem id='1' onClick={handlePickValue}>
+                <ListItemText primary='1' />
+              </StyledMenuItem>
+              <StyledMenuItem id='2' onClick={handlePickValue}>
+                <ListItemText primary='2' />
+              </StyledMenuItem>
+              <StyledMenuItem id='3' onClick={handlePickValue}>
+                <ListItemText primary='3' />
+              </StyledMenuItem>
+              <StyledMenuItem id='4' onClick={handlePickValue}>
+                <ListItemText primary='4' />
+              </StyledMenuItem>
+              <StyledMenuItem id='5' onClick={handlePickValue}>
+                <ListItemText primary='5' />
+              </StyledMenuItem>
+              <StyledMenuItem id='6' onClick={handlePickValue}>
+                <ListItemText primary='6' />
+              </StyledMenuItem>
+              <StyledMenuItem id='7' onClick={handlePickValue}>
+                <ListItemText primary='7' />
+              </StyledMenuItem>
+              <StyledMenuItem id='8' onClick={handlePickValue}>
+                <ListItemText primary='8' />
+              </StyledMenuItem>
+              <StyledMenuItem id='9' onClick={handlePickValue}>
+                <ListItemText primary='9' />
+              </StyledMenuItem>
+            </StyledMenu>
+          </Grid>
+        )
+      }
     })
 
     const smallVerticalDivider = <div className={classes.vertDivThin}></div>
@@ -125,7 +248,7 @@ const BoardNineByNine = props => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     gameBody: state.game.gameBody,
     isFetching: state.game.isFetching,
@@ -133,7 +256,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    updateBoard: (gameData) => dispatch(updateBoard(gameData))
+  }
+}
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(BoardNineByNine)
