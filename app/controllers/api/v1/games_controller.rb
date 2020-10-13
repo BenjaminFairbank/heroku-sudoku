@@ -9,18 +9,30 @@ class Api::V1::GamesController < ApplicationController
     api_game_data = JSON.parse(api_response.body)
 
     board = []
+    row_counter = 0
     size.times do
       row = []
+      column_counter = 0
       size.times do
-        row << ' '
+        square = {
+          "x"=>column_counter,
+          "y"=>row_counter,
+          "value"=>" ",
+          "immutable"=>false
+        }
+        row << square
+        column_counter += 1
       end
       board << row
+      row_counter += 1
     end
 
     if api_game_data["response"]
 
       api_game_data["squares"].each do |square|
-        board[square["y"]][square["x"]] = square["value"].to_s
+        square["value"] = square["value"].to_s
+        square["immutable"] = true
+        board[square["y"]][square["x"]] = square
       end
 
       render json: board
