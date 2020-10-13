@@ -51,13 +51,13 @@ const BoardFourByFour = props => {
 
   let boardMap = props.gameBody.map(row => {
 
-    let formRow = row.map(value => {
+    let formRow = row.map(square => {
 
       return (
         <Grid item xs={2.999}>
           <Paper className={classes.paper}>
             <Typography variant="h2" className={classes.text}>
-              {value}
+              {square.value}
             </Typography>
           </Paper>
         </Grid>
