@@ -22,6 +22,10 @@ const game = (state = initialState, action) => {
       }
     case POST_GAME_REQUEST_FAILURE:
       return {...state, isFetching: false }
+    case UPDATE_BOARD:
+      let board = state.gameBody
+      board[action.boardData.y][action.boardData.x].value = action.boardData.value
+      return {...state, gameBody: board }
     default:
       return state
   }
@@ -70,6 +74,15 @@ const postGameRequestFailure = () => {
   }
 }
 
+const UPDATE_BOARD = 'UPDATE_BOARD'
+
+const updateBoard = boardData => {
+  return {
+    type: UPDATE_BOARD,
+    boardData
+  }
+}
+
 
 const postGame = (gameData) => {
   return dispatch => {
@@ -107,5 +120,6 @@ export {
   game,
   setSize,
   setDifficulty,
-  postGame
+  postGame,
+  updateBoard
 }

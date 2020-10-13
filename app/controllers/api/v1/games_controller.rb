@@ -15,10 +15,10 @@ class Api::V1::GamesController < ApplicationController
       column_counter = 0
       size.times do
         square = {
-          "x"=>column_counter,
-          "y"=>row_counter,
-          "value"=>" ",
-          "immutable"=>false
+          x: column_counter,
+          y: row_counter,
+          value: " ",
+          given: false
         }
         row << square
         column_counter += 1
@@ -31,7 +31,7 @@ class Api::V1::GamesController < ApplicationController
 
       api_game_data["squares"].each do |square|
         square["value"] = square["value"].to_s
-        square["immutable"] = true
+        square["given"] = true
         board[square["y"]][square["x"]] = square
       end
 
