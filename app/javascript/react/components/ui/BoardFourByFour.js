@@ -115,9 +115,9 @@ const BoardFourByFour = props => {
     handleClose()
   }
 
-  let boardMap = props.gameBody.map(row => {
-
-    let formRow = row.map(square => {
+  let boardMap = props.gameBody.rows.map(row => {
+    
+    let formRow = row.squares.map(square => {
 
       if (square.given) {
         return (
@@ -217,7 +217,7 @@ const BoardFourByFour = props => {
   return (
     <Card className={classes.card}>
       <Grid container spacing={0} className={classes.gridContainer}>
-        {display}
+        {boardMap}
       </Grid>
     </Card>
   )
