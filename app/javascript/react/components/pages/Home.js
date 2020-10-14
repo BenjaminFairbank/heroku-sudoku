@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { setSize, setDifficulty } from '../../modules/game'
+import { setSize, setDifficulty, resetGame } from '../../modules/game'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -59,9 +59,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const Home = (props) => {
   const classes = useStyles()
+
+  useEffect(() => {
+    props.resetGame()
+  }, [])
 
   const handleSizeChange = (event) => {
     props.setSize(event.target.value);
@@ -139,7 +142,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setSize: (event) => dispatch(setSize(event)),
-    setDifficulty: (event) => dispatch(setDifficulty(event))
+    setDifficulty: (event) => dispatch(setDifficulty(event)),
+    resetGame: () => dispatch(resetGame())
   }
 }
 
