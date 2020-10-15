@@ -226,7 +226,7 @@ const BoardNineByNine = props => {
   boardMap.splice(1, 0, smallHorizontalDivider)
 
   let display
-  if (props.isFetching) {
+  if (props.gameBody.rows.length === 0) {
     display =
       <Card>
         <CardMedia
@@ -242,7 +242,7 @@ const BoardNineByNine = props => {
   return (
     <Card className={classes.card}>
       <Grid container spacing={0} className={classes.gridContainer}>
-        {boardMap}
+        {display}
       </Grid>
     </Card>
   )
