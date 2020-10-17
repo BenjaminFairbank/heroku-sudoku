@@ -63,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     paddingTop: 2,
     backgroundColor: theme.palette.quaternary.main,
+    borderRadius: 4,
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
   },
   gridContainer: {
     height: 320,
@@ -95,6 +97,15 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     width: 125,
   },
+  selected: {
+    height: 34,
+    width: 34,
+    textAlign: 'center',
+    paddingTop: 2,
+    backgroundColor: theme.palette.quinary.main,
+    borderRadius: 4,
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+  },
 }));
 
 const BoardNineByNine = props => {
@@ -109,6 +120,7 @@ const BoardNineByNine = props => {
   };
 
   const handleClose = () => {
+    anchorEl.className = classes.paper
     setAnchorEl(null);
   };
 
@@ -253,6 +265,10 @@ const BoardNineByNine = props => {
   boardMap.splice(3, 0, largeHorizontalDivider)
   boardMap.splice(2, 0, smallHorizontalDivider)
   boardMap.splice(1, 0, smallHorizontalDivider)
+
+  if (anchorEl !== null) {
+    anchorEl.className = classes.selected
+  }
 
   let display
   if (props.gameBody.rows.length === 0) {
