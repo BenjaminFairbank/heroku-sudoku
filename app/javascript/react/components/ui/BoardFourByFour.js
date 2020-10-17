@@ -38,10 +38,14 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
+    '& .MuiListItemText-primary': {
+      fontWeight: 'bold',
+    },
     '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+      backgroundColor: theme.palette.tertiary.main,
+      '& .MuiListItemText-primary': {
         color: theme.palette.common.white,
+        fontWeight: 'bold',
       },
     },
   },
@@ -87,6 +91,9 @@ const useStyles = makeStyles((theme) => ({
   loading: {
     height: 320,
     width: 320,
+  },
+  grid: {
+    width: 84,
   },
 }));
 
@@ -151,21 +158,33 @@ const BoardFourByFour = props => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <StyledMenuItem id=' ' onClick={handlePickValue}>
-                <ListItemText primary='&nbsp;' />
-              </StyledMenuItem>
-              <StyledMenuItem id='1' onClick={handlePickValue}>
-                <ListItemText primary='1' />
-              </StyledMenuItem>
-              <StyledMenuItem id='2' onClick={handlePickValue}>
-                <ListItemText primary='2' />
-              </StyledMenuItem>
-              <StyledMenuItem id='3' onClick={handlePickValue}>
-                <ListItemText primary='3' />
-              </StyledMenuItem>
-              <StyledMenuItem id='4' onClick={handlePickValue}>
-                <ListItemText primary='4' />
-              </StyledMenuItem>
+              <Grid container spacing={0} className={classes.grid}>
+                <Grid item xs={12}>
+                  <StyledMenuItem id=' ' onClick={handlePickValue}>
+                    <ListItemText primary='&nbsp;' />
+                  </StyledMenuItem>
+                </Grid>
+                <Grid item xs={6}>
+                  <StyledMenuItem id='1' onClick={handlePickValue}>
+                    <ListItemText primary='1' />
+                  </StyledMenuItem>
+                </Grid>
+                <Grid item xs={6}>
+                  <StyledMenuItem id='2' onClick={handlePickValue}>
+                    <ListItemText primary='2' />
+                  </StyledMenuItem>
+                </Grid>
+                <Grid item xs={6}>
+                  <StyledMenuItem id='3' onClick={handlePickValue}>
+                    <ListItemText primary='3' />
+                  </StyledMenuItem>
+                </Grid>
+                <Grid item xs={6}>
+                  <StyledMenuItem id='4' onClick={handlePickValue}>
+                    <ListItemText primary='4' />
+                  </StyledMenuItem>
+                </Grid>
+              </Grid>
             </StyledMenu>
           </Grid>
         )
