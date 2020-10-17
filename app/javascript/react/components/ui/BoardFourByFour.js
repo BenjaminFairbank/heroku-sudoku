@@ -63,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     backgroundColor: theme.palette.quaternary.main,
     paddingTop: 5,
+    borderRadius: 4,
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
   },
   gridContainer: {
     height: 320,
@@ -95,6 +97,15 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     width: 84,
   },
+  selected: {
+    height: 77,
+    width: 77,
+    textAlign: 'center',
+    backgroundColor: theme.palette.quinary.main,
+    paddingTop: 5,
+    borderRadius: 4,
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+  },
 }));
 
 const BoardFourByFour = props => {
@@ -109,6 +120,7 @@ const BoardFourByFour = props => {
   };
 
   const handleClose = () => {
+    anchorEl.className = classes.paper
     setAnchorEl(null);
   };
 
@@ -218,6 +230,10 @@ const BoardFourByFour = props => {
   boardMap.splice(3, 0, smallHorizontalDivider)
   boardMap.splice(2, 0, largeHorizontalDivider)
   boardMap.splice(1, 0, smallHorizontalDivider)
+
+  if (anchorEl !== null) {
+    anchorEl.className = classes.selected
+  }
 
   let display
   if (props.gameBody.rows.length === 0) {
