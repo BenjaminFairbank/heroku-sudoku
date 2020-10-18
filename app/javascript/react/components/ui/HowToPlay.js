@@ -2,6 +2,7 @@ import React from 'react'
 
 import rcb from '../../../../assets/images/RCB.png';
 import example from '../../../../assets/images/Completed.png';
+import select from '../../../../assets/images/Select.png';
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -48,7 +49,7 @@ const HowToPlay = props => {
   return (
     <Container maxWidth="sm">
       <Typography variant='h4' className={classes.title}>
-        How to play Sudoku
+        How to play Heroku Sudoku
       </Typography>
       <Typography variant='h6' className={classes.body}>
         The object of Sudoku is to complete the puzzle by filling in every
@@ -73,10 +74,18 @@ const HowToPlay = props => {
           <CardMedia image={example} className={classes.img} ></CardMedia>
         </Card>
       </Box>
-      <Typography variant='h6' className={classes.body3}>
+      <Typography variant='h6' className={classes.body}>
         Change the value of a tile by simply clicking on it and selecting a new
         value.  Try to employ processes of elimination in order to determine the
-        values of the blank tiles.  If you are having trouble you can always
+        values of the blank tiles.
+      </Typography>
+      <Box className={classes.imgBox}>
+        <Card className={classes.imgCard}>
+          <CardMedia image={select} className={classes.img} ></CardMedia>
+        </Card>
+      </Box>
+      <Typography variant='h6' className={classes.body3}>
+        If you are having trouble you can always
         begin a new game by returning to the home page. To do so, click on
         "Heroku Sudoku" in the top left corner.  If you would like to restart
         the puzzle you have begun simply refresh the page.  Good luck and enjoy!
