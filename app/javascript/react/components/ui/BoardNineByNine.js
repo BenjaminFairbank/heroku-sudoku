@@ -138,6 +138,17 @@ const BoardNineByNine = props => {
 
     let formRow = row.squares.map(square => {
 
+      const arr = Array.from({length: row.squares.length}, (_, i) => i + 1)
+      const menuGridOptions = arr.map((num) => {
+        return (
+          <Grid item xs={4}>
+            <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
+              <ListItemText primary={num.toString()} />
+            </StyledMenuItem>
+          </Grid>
+        )
+      })
+
       if (square.given) {
         return (
           <Grid item xs={2.999}>
@@ -176,51 +187,7 @@ const BoardNineByNine = props => {
                     <ListItemText primary='&nbsp;' />
                   </StyledMenuItem>
                 </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='1' onClick={handlePickValue}>
-                    <ListItemText primary='1' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='2' onClick={handlePickValue}>
-                    <ListItemText primary='2' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='3' onClick={handlePickValue}>
-                    <ListItemText primary='3' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='4' onClick={handlePickValue}>
-                    <ListItemText primary='4' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='5' onClick={handlePickValue}>
-                    <ListItemText primary='5' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='6' onClick={handlePickValue}>
-                    <ListItemText primary='6' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='7' onClick={handlePickValue}>
-                    <ListItemText primary='7' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='8' onClick={handlePickValue}>
-                    <ListItemText primary='8' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                  <StyledMenuItem id='9' onClick={handlePickValue}>
-                    <ListItemText primary='9' />
-                  </StyledMenuItem>
-                </Grid>
+                {menuGridOptions}
               </Grid>
             </StyledMenu>
           </Grid>

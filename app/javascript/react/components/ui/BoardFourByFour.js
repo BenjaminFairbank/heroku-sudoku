@@ -138,6 +138,17 @@ const BoardFourByFour = props => {
 
     let formRow = row.squares.map(square => {
 
+      const arr = Array.from({length: row.squares.length}, (_, i) => i + 1)
+      const menuGridOptions = arr.map((num) => {
+        return (
+          <Grid item xs={6}>
+            <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
+              <ListItemText primary={num.toString()} />
+            </StyledMenuItem>
+          </Grid>
+        )
+      })
+
       if (square.given) {
         return (
           <Grid item xs={2.999}>
@@ -176,26 +187,7 @@ const BoardFourByFour = props => {
                     <ListItemText primary='&nbsp;' />
                   </StyledMenuItem>
                 </Grid>
-                <Grid item xs={6}>
-                  <StyledMenuItem id='1' onClick={handlePickValue}>
-                    <ListItemText primary='1' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={6}>
-                  <StyledMenuItem id='2' onClick={handlePickValue}>
-                    <ListItemText primary='2' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={6}>
-                  <StyledMenuItem id='3' onClick={handlePickValue}>
-                    <ListItemText primary='3' />
-                  </StyledMenuItem>
-                </Grid>
-                <Grid item xs={6}>
-                  <StyledMenuItem id='4' onClick={handlePickValue}>
-                    <ListItemText primary='4' />
-                  </StyledMenuItem>
-                </Grid>
+                {menuGridOptions}
               </Grid>
             </StyledMenu>
           </Grid>
