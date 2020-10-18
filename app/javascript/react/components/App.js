@@ -14,6 +14,7 @@ import Board from './pages/Board'
 import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
 import AlertMessage from './ui/AlertMessage'
+import HowToPlay from './ui/HowToPlay'
 
 export const App = props => {
 
@@ -62,6 +63,7 @@ export const App = props => {
             <Route exact path='/games/:id' component={Board} />
           </Switch>
         </BrowserRouter>
+        <HowToPlay />
         <ScrollUpButton />
       </ThemeProvider>
     </Provider>
