@@ -134,12 +134,14 @@ const BoardFourByFour = props => {
     handleClose()
   }
 
+  const reverseDividerRange = Array.from({length: props.gameBody.rows.length - 1}, (_, i) => i + 1).reverse()
+
   let boardMap = props.gameBody.rows.map(row => {
 
     let formRow = row.squares.map(square => {
 
-      const arr = Array.from({length: row.squares.length}, (_, i) => i + 1)
-      const menuGridOptions = arr.map((num) => {
+      const range = Array.from({length: row.squares.length}, (_, i) => i + 1)
+      const menuGridOptions = range.map((num) => {
         return (
           <Grid item xs={6}>
             <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
@@ -198,9 +200,13 @@ const BoardFourByFour = props => {
     const smallVerticalDivider = <div className={classes.vertDivThin}></div>
     const largeVerticalDivider = <div className={classes.vertDivThick}></div>
 
-    formRow.splice(3, 0, smallVerticalDivider)
-    formRow.splice(2, 0, largeVerticalDivider)
-    formRow.splice(1, 0, smallVerticalDivider)
+    reverseDividerRange.forEach((value) => {
+      if (value%2 === 0) {
+        formRow.splice(value, 0, largeVerticalDivider)
+      } else {
+        formRow.splice(value, 0, smallVerticalDivider)
+      }
+    });
 
     return (
       <Grid container item xs={12} spacing={0}>
@@ -219,9 +225,13 @@ const BoardFourByFour = props => {
       <div className={classes.horzDivThick}></div>
     </Grid>
 
-  boardMap.splice(3, 0, smallHorizontalDivider)
-  boardMap.splice(2, 0, largeHorizontalDivider)
-  boardMap.splice(1, 0, smallHorizontalDivider)
+  reverseDividerRange.forEach((value) => {
+    if (value%2 === 0) {
+      boardMap.splice(value, 0, largeHorizontalDivider)
+    } else {
+      boardMap.splice(value, 0, smallHorizontalDivider)
+    }
+  });
 
   if (anchorEl !== null) {
     anchorEl.className = classes.selected
