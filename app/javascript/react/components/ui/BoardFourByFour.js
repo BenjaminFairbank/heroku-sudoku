@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateBoard } from '../../modules/game'
+import conflictChecker from '../../functions/conflictChecker'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import {
@@ -40,6 +41,7 @@ const StyledMenuItem = withStyles((theme) => ({
   root: {
     '& .MuiListItemText-primary': {
       fontWeight: 'bold',
+      textAlign: 'center',
     },
     '&:focus': {
       backgroundColor: theme.palette.tertiary.main,
@@ -113,10 +115,12 @@ const BoardFourByFour = props => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedSquare, setSelectedSquare] = React.useState(null);
+  const [conflicts, setConflicts] = React.useState([])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setSelectedSquare({ x: parseInt(event.currentTarget.id.charAt(0)), y: parseInt(event.currentTarget.id.charAt(1)) })
+    setConflicts(conflictChecker(props.gameBody, parseInt(event.currentTarget.id.charAt(0)), parseInt(event.currentTarget.id.charAt(1))))
   };
 
   const handleClose = () => {
@@ -141,14 +145,25 @@ const BoardFourByFour = props => {
     let formRow = row.squares.map(square => {
 
       const range = Array.from({length: row.squares.length}, (_, i) => i + 1)
+
       const menuGridOptions = range.map((num) => {
-        return (
-          <Grid item xs={6}>
-            <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
-              <ListItemText primary={num.toString()} />
-            </StyledMenuItem>
-          </Grid>
-        )
+        if (conflicts.includes(num)) {
+          return (
+            <Grid item xs={6}>
+              <StyledMenuItem id={num.toString()}>
+                <ListItemText primary='&nbsp;' />
+              </StyledMenuItem>
+            </Grid>
+          )
+        } else {
+          return (
+            <Grid item xs={6}>
+              <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
+                <ListItemText primary={num.toString()} />
+              </StyledMenuItem>
+            </Grid>
+          )
+        }
       })
 
       if (square.given) {
@@ -186,7 +201,7 @@ const BoardFourByFour = props => {
               <Grid container spacing={0} className={classes.grid}>
                 <Grid item xs={12}>
                   <StyledMenuItem id=' ' onClick={handlePickValue}>
-                    <ListItemText primary='&nbsp;' />
+                    <ListItemText primary='?' />
                   </StyledMenuItem>
                 </Grid>
                 {menuGridOptions}
