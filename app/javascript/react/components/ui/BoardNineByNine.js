@@ -134,12 +134,14 @@ const BoardNineByNine = props => {
     handleClose()
   }
 
+  const reverseDividerRange = Array.from({length: props.gameBody.rows.length - 1}, (_, i) => i + 1).reverse()
+
   let boardMap = props.gameBody.rows.map(row => {
 
     let formRow = row.squares.map(square => {
 
-      const arr = Array.from({length: row.squares.length}, (_, i) => i + 1)
-      const menuGridOptions = arr.map((num) => {
+      const range = Array.from({length: row.squares.length}, (_, i) => i + 1)
+      const menuGridOptions = range.map((num) => {
         return (
           <Grid item xs={4}>
             <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
@@ -198,14 +200,13 @@ const BoardNineByNine = props => {
     const smallVerticalDivider = <div className={classes.vertDivThin}></div>
     const largeVerticalDivider = <div className={classes.vertDivThick}></div>
 
-    formRow.splice(8, 0, smallVerticalDivider)
-    formRow.splice(7, 0, smallVerticalDivider)
-    formRow.splice(6, 0, largeVerticalDivider)
-    formRow.splice(5, 0, smallVerticalDivider)
-    formRow.splice(4, 0, smallVerticalDivider)
-    formRow.splice(3, 0, largeVerticalDivider)
-    formRow.splice(2, 0, smallVerticalDivider)
-    formRow.splice(1, 0, smallVerticalDivider)
+    reverseDividerRange.forEach((value) => {
+      if (value%3 === 0) {
+        formRow.splice(value, 0, largeVerticalDivider)
+      } else {
+        formRow.splice(value, 0, smallVerticalDivider)
+      }
+    });
 
     return (
       <Grid container item xs={12} spacing={0}>
@@ -224,14 +225,13 @@ const BoardNineByNine = props => {
       <div className={classes.horzDivThick}></div>
     </Grid>
 
-  boardMap.splice(8, 0, smallHorizontalDivider)
-  boardMap.splice(7, 0, smallHorizontalDivider)
-  boardMap.splice(6, 0, largeHorizontalDivider)
-  boardMap.splice(5, 0, smallHorizontalDivider)
-  boardMap.splice(4, 0, smallHorizontalDivider)
-  boardMap.splice(3, 0, largeHorizontalDivider)
-  boardMap.splice(2, 0, smallHorizontalDivider)
-  boardMap.splice(1, 0, smallHorizontalDivider)
+  reverseDividerRange.forEach((value) => {
+    if (value%3 === 0) {
+      boardMap.splice(value, 0, largeHorizontalDivider)
+    } else {
+      boardMap.splice(value, 0, smallHorizontalDivider)
+    }
+  });
 
   if (anchorEl !== null) {
     anchorEl.className = classes.selected
