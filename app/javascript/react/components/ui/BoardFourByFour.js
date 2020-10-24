@@ -147,15 +147,15 @@ const BoardFourByFour = props => {
       const range = Array.from({length: row.squares.length}, (_, i) => i + 1)
 
       const menuGridOptions = range.map((num) => {
-        if (conflicts.includes(num)) {
-          return (
-            <Grid item xs={6}>
-              <StyledMenuItem id={num.toString()}>
-                <ListItemText primary='&nbsp;' />
-              </StyledMenuItem>
-            </Grid>
-          )
-        } else {
+        // if (conflicts.includes(num)) {
+        //   return (
+        //     <Grid item xs={6}>
+        //       <StyledMenuItem id={num.toString()}>
+        //         <ListItemText primary='&nbsp;' />
+        //       </StyledMenuItem>
+        //     </Grid>
+        //   )
+        // } else {
           return (
             <Grid item xs={6}>
               <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
@@ -163,7 +163,7 @@ const BoardFourByFour = props => {
               </StyledMenuItem>
             </Grid>
           )
-        }
+        // }
       })
 
       if (square.given) {
