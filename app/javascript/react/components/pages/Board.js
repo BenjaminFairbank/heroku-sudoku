@@ -16,7 +16,9 @@ import {
   ListItemIcon,
   ListItemText
 } from '@material-ui/core'
+
 import LoadingCard from '../ui/LoadingCard'
+import MenuModeToggle from '../ui/MenuModeToggle'
 
 const StyledMenu = withStyles({
   paper: {
@@ -61,12 +63,12 @@ const Board = props => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedSquare, setSelectedSquare] = React.useState(null);
-  // const [conflicts, setConflicts] = React.useState([])
+  const [conflicts, setConflicts] = React.useState([])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setSelectedSquare({ x: parseInt(event.currentTarget.id.charAt(0)), y: parseInt(event.currentTarget.id.charAt(1)) })
-    // setConflicts(conflictChecker(props.gameBody, parseInt(event.currentTarget.id.charAt(0)), parseInt(event.currentTarget.id.charAt(1))))
+    setConflicts(conflictChecker(props.gameBody, parseInt(event.currentTarget.id.charAt(0)), parseInt(event.currentTarget.id.charAt(1))))
   }
 
   const handleClose = () => {
@@ -118,15 +120,15 @@ const Board = props => {
       const range = Array.from({length: props.boardSize}, (_, i) => i + 1)
 
       const menuGridOptions = range.map((num) => {
-        // if (conflicts.includes(num)) {
-        //   return (
-        //     <Grid item xs={4}>
-        //       <StyledMenuItem >
-        //         <ListItemText primary='&nbsp;' />
-        //       </StyledMenuItem>
-        //     </Grid>
-        //   )
-        // } else {
+        if (props.easyMenuMode && conflicts.includes(num)) {
+          return (
+            <Grid item xs={4}>
+              <div >
+                <Typography>&nbsp;</Typography>
+              </div>
+            </Grid>
+          )
+        } else {
           return (
             <Grid item xs={menuGridXs}>
               <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
@@ -134,7 +136,7 @@ const Board = props => {
               </StyledMenuItem>
             </Grid>
           )
-        // }
+        }
       })
 
       if (square.given) {
@@ -230,6 +232,7 @@ const Board = props => {
 
   return (
     <Container className={classes.container}>
+      <MenuModeToggle />
       <Box className={classes.box}>
         <Card className={classes.card}>
           <Grid container spacing={0} className={classes.gridContainer}>
@@ -246,6 +249,7 @@ const mapStateToProps = state => {
     gameBody: state.game.gameBody,
     boardSize: state.game.boardSize,
     isFetching: state.game.isFetching,
+    easyMenuMode: state.game.easyMenuMode
   }
 }
 

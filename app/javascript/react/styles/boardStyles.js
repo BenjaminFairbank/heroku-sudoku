@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop: 100,
+    paddingTop: 20,
   },
   box: {
     height: 340,
