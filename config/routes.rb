@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "/home", to: "homes#index"
-  get "/play", to: "homes#index"
+  get "/games/new", to: "homes#index"
   get "/games/:id", to: "homes#index"
 
   namespace :api do

@@ -118,7 +118,7 @@ const Home = (props) => {
         </FormControl>
         <Button
           component={Link}
-          to='/play'
+          to='/games/new'
           size="large"
           variant="contained"
           color="secondary"

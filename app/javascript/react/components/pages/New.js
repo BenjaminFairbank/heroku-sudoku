@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     backgroundColor: theme.palette.tertiary.main,
   },
-  gridContainer: {
+  innerBox: {
     height: 320,
     width: 320,
     margin: 'auto',
   },
 }))
 
-const Play = props => {
+const New = props => {
   const classes = useStyles()
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Play = props => {
     <Container className={classes.container}>
       <Box className={classes.box}>
         <Card className={classes.card}>
-          <Box className={classes.gridContainer}>
+          <Box className={classes.innerBox}>
             <LoadingCard />
           </Box>
         </Card>
@@ -78,4 +78,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Play)
+)(New)
