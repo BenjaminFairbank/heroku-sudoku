@@ -7,9 +7,6 @@ import { postGame } from '../../modules/game'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Box, Card, CardMedia } from '@material-ui/core'
 
-import BoardNineByNine from '../ui/BoardNineByNine'
-import BoardFourByFour from '../ui/BoardFourByFour'
-
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: 100,
@@ -77,7 +74,6 @@ const mapStateToProps = (state) => {
     boardSize: state.game.boardSize,
     gameDifficulty: state.game.gameDifficulty,
     isFetching: state.game.isFetching,
-    gameBody: state.game.gameBody,
     gameId: state.game.gameId
   }
 }
