@@ -8,7 +8,7 @@ import { CssBaseline } from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import Home from './pages/Home'
-import Play from './pages/Play'
+import New from './pages/New'
 import Board from './pages/Board'
 
 import TopBar from './ui/TopBar'
@@ -59,7 +59,7 @@ export const App = props => {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/play' component={Play} />
+            <Route exact path='/games/new' component={New} />
             <Route exact path='/games/:id' component={Board} />
           </Switch>
         </BrowserRouter>
