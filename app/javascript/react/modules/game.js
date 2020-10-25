@@ -5,7 +5,8 @@ const initialState = {
   gameDifficulty: 1,
   gameBody: { rows: [] },
   gameId: null,
-  isFetching: false
+  isFetching: false,
+  easyMenuMode: false
 }
 
 const game = (state = initialState, action) => {
@@ -56,6 +57,8 @@ const game = (state = initialState, action) => {
       return {...state, isFetching: false }
     case RESET_GAME:
       return initialState
+    case TOGGLE_MENU_MODE:
+      return {...state, easyMenuMode: !state.easyMenuMode }
     default:
       return state
   }
@@ -146,6 +149,13 @@ const resetGame = () => {
   }
 }
 
+const TOGGLE_MENU_MODE = 'TOGGLE_MENU_MODE'
+
+const toggleMenuMode = () => {
+  return {
+    type: TOGGLE_MENU_MODE
+  }
+}
 
 const postGame = (gameData) => {
   return dispatch => {
@@ -217,5 +227,6 @@ export {
   postGame,
   updateBoard,
   getGame,
-  resetGame
+  resetGame,
+  toggleMenuMode
 }

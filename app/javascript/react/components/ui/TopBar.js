@@ -6,7 +6,8 @@ import { toggleDarkMode } from '../../modules/app'
 
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { AppBar,
+import {
+  AppBar,
   Toolbar,
   Typography,
   useScrollTrigger,
@@ -44,20 +45,19 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-}));
+}))
 
 function ElevationScroll(props) {
   const { children } = props
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-  });
+  })
 
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
-  });
+  })
 }
-
 
 const TopBar = (props) => {
   const classes = useStyles()
