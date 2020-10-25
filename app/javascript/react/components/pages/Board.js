@@ -130,8 +130,11 @@ const useStyles = makeStyles((theme) => ({
     height: 320,
     width: 320,
   },
-  grid: {
+  grid4x4: {
     width: 84,
+  },
+  grid9x9: {
+    width: 126,
   },
   selected4x4: {
     height: 77,
@@ -193,6 +196,9 @@ const Board = props => {
   let horzDivThinClass
   let horzDivThickClass
   let selectedClass
+  let fontSize
+  let menuGridXs
+  let menuGridWidth
   if (props.boardSize === 4) {
     paperClass = classes.paper4x4
     vertDivThinClass = classes.vertDivThin4x4
@@ -200,6 +206,9 @@ const Board = props => {
     horzDivThinClass = classes.horzDivThin4x4
     horzDivThickClass = classes.horzDivThick4x4
     selectedClass = classes.selected4x4
+    fontSize = 'h2'
+    menuGridXs = 6
+    menuGridWidth = classes.grid4x4
   } else {
     paperClass = classes.paper9x9
     vertDivThinClass = classes.vertDivThin9x9
@@ -207,6 +216,9 @@ const Board = props => {
     horzDivThinClass = classes.horzDivThin9x9
     horzDivThickClass = classes.horzDivThick9x9
     selectedClass = classes.selected9x9
+    fontSize = 'h6'
+    menuGridXs = 4
+    menuGridWidth = classes.grid9x9
   }
 
   const reverseDividerRange = Array.from({length: props.boardSize - 1}, (_, i) => i + 1).reverse()
@@ -228,7 +240,7 @@ const Board = props => {
         //   )
         // } else {
           return (
-            <Grid item xs={4}>
+            <Grid item xs={menuGridXs}>
               <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
                 <ListItemText primary={num.toString()} />
               </StyledMenuItem>
@@ -241,7 +253,7 @@ const Board = props => {
         return (
           <Grid item xs={2.999}>
             <Paper className={paperClass}>
-              <Typography variant='h6' className={classes.text}>
+              <Typography variant={fontSize} className={classes.text}>
                 <Box fontWeight="fontWeightBold">{square.value}</Box>
               </Typography>
             </Paper>
@@ -258,7 +270,7 @@ const Board = props => {
               onClick={handleClick}
               id={`${square.x}${square.y}`}
             >
-              <Typography variant='h6' className={classes.text}>
+              <Typography variant={fontSize} className={classes.text}>
                 <Box fontWeight="fontWeightLight">{square.value}</Box>
               </Typography>
             </Paper>
@@ -269,7 +281,7 @@ const Board = props => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <Grid container spacing={0} className={classes.grid}>
+              <Grid container spacing={0} className={menuGridWidth}>
                 <Grid item xs={12}>
                   <StyledMenuItem id=' ' onClick={handlePickValue}>
                     <ListItemText primary='?' />
@@ -287,10 +299,18 @@ const Board = props => {
     const largeVerticalDivider = <div className={vertDivThickClass}></div>
 
     reverseDividerRange.forEach((value) => {
-      if (value%3 === 0) {
-        formRow.splice(value, 0, largeVerticalDivider)
+      if (props.boardSize === 4) {
+        if (value%2 === 0) {
+          formRow.splice(value, 0, largeVerticalDivider)
+        } else {
+          formRow.splice(value, 0, smallVerticalDivider)
+        }
       } else {
-        formRow.splice(value, 0, smallVerticalDivider)
+        if (value%3 === 0) {
+          formRow.splice(value, 0, largeVerticalDivider)
+        } else {
+          formRow.splice(value, 0, smallVerticalDivider)
+        }
       }
     });
 
@@ -312,15 +332,23 @@ const Board = props => {
     </Grid>
 
   reverseDividerRange.forEach((value) => {
-    if (value%3 === 0) {
-      boardMap.splice(value, 0, largeHorizontalDivider)
+    if (props.boardSize === 4) {
+      if (value%2 === 0) {
+        boardMap.splice(value, 0, largeHorizontalDivider)
+      } else {
+        boardMap.splice(value, 0, smallHorizontalDivider)
+      }
     } else {
-      boardMap.splice(value, 0, smallHorizontalDivider)
+      if (value%3 === 0) {
+        boardMap.splice(value, 0, largeHorizontalDivider)
+      } else {
+        boardMap.splice(value, 0, smallHorizontalDivider)
+      }
     }
   });
 
   if (anchorEl !== null) {
-    anchorEl.className = classes.selectedClass
+    anchorEl.className = selectedClass
   }
 
   let display
