@@ -123,8 +123,8 @@ const Board = props => {
         if (props.easyMenuMode && conflicts.includes(num)) {
           return (
             <Grid item xs={4}>
-              <div >
-                <Typography>&nbsp;</Typography>
+              <div className={classes.emptyOption}>
+                <Typography variant='p'>&nbsp;</Typography>
               </div>
             </Grid>
           )
