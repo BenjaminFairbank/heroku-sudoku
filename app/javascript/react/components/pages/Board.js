@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getGame, updateBoard } from '../../modules/game'
 import conflictChecker from '../../functions/conflictChecker'
-
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import useStyles from '../../styles/boardStyles'
+import { withStyles } from '@material-ui/core/styles'
 import {
   Container,
   Paper,
@@ -54,108 +54,6 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: 100,
-  },
-  box: {
-    height: 340,
-    width: 340,
-    margin: 'auto',
-  },
-  card: {
-    flexGrow: 1,
-    padding: 10,
-    backgroundColor: theme.palette.tertiary.main,
-  },
-  paper4x4: {
-    height: 77,
-    width: 77,
-    textAlign: 'center',
-    paddingTop: 5,
-    backgroundColor: theme.palette.quaternary.main,
-    borderRadius: 4,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-  },
-  paper9x9: {
-    height: 34,
-    width: 34,
-    textAlign: 'center',
-    paddingTop: 2,
-    backgroundColor: theme.palette.quaternary.main,
-    borderRadius: 4,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-  },
-  gridContainer: {
-    height: 320,
-    width: 320,
-    margin: 'auto',
-  },
-  text: {
-    color: 'white',
-  },
-  vertDivThick4x4: {
-    backgroundColor: theme.palette.tertiary.main,
-    width: 6,
-  },
-  vertDivThin4x4: {
-    backgroundColor: theme.palette.tertiary.main,
-    width: 3,
-  },
-  horzDivThick4x4: {
-    backgroundColor: theme.palette.tertiary.main,
-    height: 6,
-  },
-  horzDivThin4x4: {
-    backgroundColor: theme.palette.tertiary.main,
-    height: 3,
-  },
-  vertDivThick9x9: {
-    backgroundColor: theme.palette.tertiary.main,
-    width: 4,
-  },
-  vertDivThin9x9: {
-    backgroundColor: theme.palette.tertiary.main,
-    width: 1,
-  },
-  horzDivThick9x9: {
-    backgroundColor: theme.palette.tertiary.main,
-    height: 4,
-  },
-  horzDivThin9x9: {
-    backgroundColor: theme.palette.tertiary.main,
-    height: 1,
-  },
-  loading: {
-    height: 320,
-    width: 320,
-  },
-  grid4x4: {
-    width: 84,
-  },
-  grid9x9: {
-    width: 126,
-  },
-  selected4x4: {
-    height: 77,
-    width: 77,
-    textAlign: 'center',
-    backgroundColor: theme.palette.quinary.main,
-    paddingTop: 5,
-    borderRadius: 4,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-  },
-  selected9x9: {
-    height: 34,
-    width: 34,
-    textAlign: 'center',
-    paddingTop: 2,
-    backgroundColor: theme.palette.quinary.main,
-    borderRadius: 4,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-  },
-}));
-
 const Board = props => {
   const classes = useStyles()
 
@@ -190,35 +88,25 @@ const Board = props => {
     handleClose()
   }
 
-  let paperClass
-  let vertDivThinClass
-  let vertDivThickClass
-  let horzDivThinClass
-  let horzDivThickClass
-  let selectedClass
-  let fontSize
-  let menuGridXs
-  let menuGridWidth
-  if (props.boardSize === 4) {
-    paperClass = classes.paper4x4
-    vertDivThinClass = classes.vertDivThin4x4
-    vertDivThickClass = classes.vertDivThick4x4
-    horzDivThinClass = classes.horzDivThin4x4
-    horzDivThickClass = classes.horzDivThick4x4
-    selectedClass = classes.selected4x4
-    fontSize = 'h2'
-    menuGridXs = 6
-    menuGridWidth = classes.grid4x4
-  } else {
+  let  paperClass = classes.paper4x4
+  let  vertDivThinClass = classes.vertDivThin4x4
+  let  vertDivThickClass = classes.vertDivThick4x4
+  let  horzDivThinClass = classes.horzDivThin4x4
+  let  horzDivThickClass = classes.horzDivThick4x4
+  let  selectedClass = classes.selected4x4
+  let  menuGridWidth = classes.grid4x4
+  let  fontSize = 'h2'
+  let  menuGridXs = 6
+  if (props.boardSize === 9) {
     paperClass = classes.paper9x9
     vertDivThinClass = classes.vertDivThin9x9
     vertDivThickClass = classes.vertDivThick9x9
     horzDivThinClass = classes.horzDivThin9x9
     horzDivThickClass = classes.horzDivThick9x9
     selectedClass = classes.selected9x9
+    menuGridWidth = classes.grid9x9
     fontSize = 'h6'
     menuGridXs = 4
-    menuGridWidth = classes.grid9x9
   }
 
   const reverseDividerRange = Array.from({length: props.boardSize - 1}, (_, i) => i + 1).reverse()
@@ -227,13 +115,13 @@ const Board = props => {
 
     let formRow = row.squares.map(square => {
 
-      const range = Array.from({length: row.squares.length}, (_, i) => i + 1)
+      const range = Array.from({length: props.boardSize}, (_, i) => i + 1)
 
       const menuGridOptions = range.map((num) => {
         // if (conflicts.includes(num)) {
         //   return (
         //     <Grid item xs={4}>
-        //       <StyledMenuItem id={num.toString()}>
+        //       <StyledMenuItem >
         //         <ListItemText primary='&nbsp;' />
         //       </StyledMenuItem>
         //     </Grid>
@@ -299,18 +187,10 @@ const Board = props => {
     const largeVerticalDivider = <div className={vertDivThickClass}></div>
 
     reverseDividerRange.forEach((value) => {
-      if (props.boardSize === 4) {
-        if (value%2 === 0) {
-          formRow.splice(value, 0, largeVerticalDivider)
-        } else {
-          formRow.splice(value, 0, smallVerticalDivider)
-        }
+      if (value%Math.sqrt(props.boardSize) === 0) {
+        formRow.splice(value, 0, largeVerticalDivider)
       } else {
-        if (value%3 === 0) {
-          formRow.splice(value, 0, largeVerticalDivider)
-        } else {
-          formRow.splice(value, 0, smallVerticalDivider)
-        }
+        formRow.splice(value, 0, smallVerticalDivider)
       }
     });
 
@@ -332,18 +212,10 @@ const Board = props => {
     </Grid>
 
   reverseDividerRange.forEach((value) => {
-    if (props.boardSize === 4) {
-      if (value%2 === 0) {
-        boardMap.splice(value, 0, largeHorizontalDivider)
-      } else {
-        boardMap.splice(value, 0, smallHorizontalDivider)
-      }
+    if (value%Math.sqrt(props.boardSize) === 0) {
+      boardMap.splice(value, 0, largeHorizontalDivider)
     } else {
-      if (value%3 === 0) {
-        boardMap.splice(value, 0, largeHorizontalDivider)
-      } else {
-        boardMap.splice(value, 0, smallHorizontalDivider)
-      }
+      boardMap.splice(value, 0, smallHorizontalDivider)
     }
   });
 
