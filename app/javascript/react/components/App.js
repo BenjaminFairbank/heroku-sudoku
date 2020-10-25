@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Provider } from 'react-redux'
-import { connect } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { closeAlertMessage } from '../modules/alertMessage'
@@ -11,6 +10,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import Home from './pages/Home'
 import Play from './pages/Play'
 import Board from './pages/Board'
+
 import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
 import AlertMessage from './ui/AlertMessage'

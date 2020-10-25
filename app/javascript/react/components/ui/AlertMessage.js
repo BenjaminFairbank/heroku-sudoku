@@ -2,7 +2,7 @@ import React from 'react'
 
 const AlertMessage = props => {
   return(
-    <div className={`alert-box`}>
+    <div>
       {props.message}
       <div onClick={props.closeAlertMessage} className='close'>&times;</div>
     </div>
