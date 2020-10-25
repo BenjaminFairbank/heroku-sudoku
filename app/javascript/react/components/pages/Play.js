@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { postGame } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Box, Card, CardMedia } from '@material-ui/core'
+import { Container, Box, Card } from '@material-ui/core'
+
+import LoadingCard from '../ui/LoadingCard'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -15,10 +17,6 @@ const useStyles = makeStyles((theme) => ({
     height: 340,
     width: 340,
     margin: 'auto',
-  },
-  loading: {
-    height: 320,
-    width: 320,
   },
   card: {
     flexGrow: 1,
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     width: 320,
     margin: 'auto',
   },
-}));
+}))
 
 const Play = props => {
   const classes = useStyles()
@@ -47,14 +45,7 @@ const Play = props => {
       <Box className={classes.box}>
         <Card className={classes.card}>
           <Box className={classes.gridContainer}>
-            <Card>
-              <CardMedia
-                image="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif"
-                alt="loading-icon"
-                className={classes.loading}
-                >
-              </CardMedia>
-            </Card>
+            <LoadingCard />
           </Box>
         </Card>
       </Box>

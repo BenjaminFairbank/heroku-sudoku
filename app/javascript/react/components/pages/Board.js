@@ -10,13 +10,13 @@ import {
   Grid,
   Card,
   Typography,
-  CardMedia,
   Box,
   Menu,
   MenuItem,
   ListItemIcon,
   ListItemText
 } from '@material-ui/core'
+import LoadingCard from '../ui/LoadingCard'
 
 const StyledMenu = withStyles({
   paper: {
@@ -36,7 +36,7 @@ const StyledMenu = withStyles({
     }}
     {...props}
   />
-));
+))
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
@@ -52,7 +52,7 @@ const StyledMenuItem = withStyles((theme) => ({
       },
     },
   },
-}))(MenuItem);
+}))(MenuItem)
 
 const Board = props => {
   const classes = useStyles()
@@ -67,7 +67,7 @@ const Board = props => {
     setAnchorEl(event.currentTarget);
     setSelectedSquare({ x: parseInt(event.currentTarget.id.charAt(0)), y: parseInt(event.currentTarget.id.charAt(1)) })
     // setConflicts(conflictChecker(props.gameBody, parseInt(event.currentTarget.id.charAt(0)), parseInt(event.currentTarget.id.charAt(1))))
-  };
+  }
 
   const handleClose = () => {
     if (props.boardSize === 4) {
@@ -76,7 +76,7 @@ const Board = props => {
       anchorEl.className = classes.paper9x9
     }
     setAnchorEl(null);
-  };
+  }
 
   const handlePickValue = (event) => {
     event.preventDefault()
@@ -192,7 +192,7 @@ const Board = props => {
       } else {
         formRow.splice(value, 0, smallVerticalDivider)
       }
-    });
+    })
 
     return (
       <Grid container item xs={12} spacing={0}>
@@ -217,23 +217,14 @@ const Board = props => {
     } else {
       boardMap.splice(value, 0, smallHorizontalDivider)
     }
-  });
+  })
 
   if (anchorEl !== null) {
     anchorEl.className = selectedClass
   }
 
-  let display
-  if (props.gameBody.rows.length === 0) {
-    display =
-      <Card>
-        <CardMedia
-          image="https://s3.amazonaws.com/horizon-production/images/redux/loading-icon.gif"
-          alt="loading-icon"
-          className={classes.loading}
-        ></CardMedia>
-      </Card>
-  } else {
+  let display = <LoadingCard />
+  if (props.gameBody.rows.length !== 0) {
     display = boardMap
   }
 

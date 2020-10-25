@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
     },
   },
-}));
+}))
 
 const Home = (props) => {
   const classes = useStyles()
