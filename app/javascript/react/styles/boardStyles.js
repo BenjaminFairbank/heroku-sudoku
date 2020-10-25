@@ -72,10 +72,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.tertiary.main,
     height: 1,
   },
-  loading: {
-    height: 320,
-    width: 320,
-  },
   grid4x4: {
     width: 84,
   },
@@ -100,6 +96,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
   },
-}));
+}))
 
 export default useStyles
