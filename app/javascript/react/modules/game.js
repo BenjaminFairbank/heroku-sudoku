@@ -61,7 +61,8 @@ const game = (state = initialState, action) => {
         boardSize: action.gameBody.rows.length,
         isFetching: false,
         percentageCompleted: initialStats.percentageCompleted,
-        squaresLeft: initialStats.squaresLeft
+        squaresLeft: initialStats.squaresLeft,
+        gameDifficulty: action.gameBody.game_difficulty
       }
     case GET_GAME_REQUEST_FAILURE:
       return {...state, isFetching: false }
