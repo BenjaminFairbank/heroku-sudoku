@@ -1,4 +1,5 @@
 import { displayAlertMessage } from './alertMessage.js'
+import squareCounter from '../functions/squareCounter'
 
 const initialState = {
   boardSize: 9,
@@ -6,7 +7,9 @@ const initialState = {
   gameBody: { rows: [] },
   gameId: null,
   isFetching: false,
-  easyMenuMode: false
+  easyMenuMode: false,
+  percentageCompleted: 0,
+  squaresLeft: 0
 }
 
 const game = (state = initialState, action) => {
@@ -27,7 +30,12 @@ const game = (state = initialState, action) => {
     case UPDATE_BOARD:
       let board = state.gameBody
       board.rows[action.boardData.y].squares[action.boardData.x].value = action.boardData.value
-      return {...state, gameBody: board }
+      const updatedStats = squareCounter(board)
+      return {...state,
+        gameBody: board,
+        percentageCompleted: updatedStats.percentageCompleted,
+        squaresLeft: updatedStats.squaresLeft
+      }
     case GET_GAME_REQUEST:
       return {...state, isFetching: true }
     case GET_GAME_REQUEST_SUCCESS:
@@ -47,11 +55,13 @@ const game = (state = initialState, action) => {
         });
         row["squares"] = orgSqrArr
       });
-
+      const initialStats = squareCounter(orgGame)
       return {...state,
         gameBody: orgGame,
         boardSize: action.gameBody.rows.length,
-        isFetching: false
+        isFetching: false,
+        percentageCompleted: initialStats.percentageCompleted,
+        squaresLeft: initialStats.squaresLeft
       }
     case GET_GAME_REQUEST_FAILURE:
       return {...state, isFetching: false }
