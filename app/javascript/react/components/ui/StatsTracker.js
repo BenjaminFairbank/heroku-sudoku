@@ -19,23 +19,48 @@ const useStyles = makeStyles((theme) => ({
     padding: 24,
     backgroundColor: theme.palette.tertiary.main,
   },
-  text: {
+  textLeft: {
     fontWeight: 'bold',
+    float: 'left',
+  },
+  textRight: {
+    fontWeight: 'bold',
+    float: 'right',
   },
 }))
 
 const StatsTracker = props => {
   const classes = useStyles()
 
+  let difficulty = 'Easy'
+  if (props.gameDifficulty === 2) {
+    difficulty = 'Medium'
+  } else if (props.gameDifficulty === 3){
+    difficulty = 'Hard'
+  }
+
   return (
     <Box className={classes.box}>
       <Card className={classes.card}>
-        <Typography variant='p' className={classes.text}>
-          Percentage completed: {props.percentageCompleted}%
+        <Typography variant='p' className={classes.textLeft}>
+          Game difficulty:
+        </Typography>
+        <Typography variant='p' className={classes.textRight}>
+          {difficulty}
         </Typography>
         <br />
-        <Typography variant='p' className={classes.text}>
-          Empty squares remaining: {props.squaresLeft}
+        <Typography variant='p' className={classes.textLeft}>
+          Empty squares remaining:
+        </Typography>
+        <Typography variant='p' className={classes.textRight}>
+          {props.squaresLeft}
+        </Typography>
+        <br />
+        <Typography variant='p' className={classes.textLeft}>
+          Percentage completed:
+        </Typography>
+        <Typography variant='p' className={classes.textRight}>
+          {props.percentageCompleted}%
         </Typography>
       </Card>
     </Box>
@@ -45,7 +70,8 @@ const StatsTracker = props => {
 const mapStateToProps = (state) => {
   return {
     percentageCompleted: state.game.percentageCompleted,
-    squaresLeft: state.game.squaresLeft
+    squaresLeft: state.game.squaresLeft,
+    gameDifficulty: state.game.gameDifficulty
   }
 }
 
