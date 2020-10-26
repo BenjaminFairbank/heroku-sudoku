@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   box: {
     width: 340,
     margin: 'auto',
-    marginBottom: 16,
+    marginTop: 10,
   },
   card: {
     backgroundColor: theme.palette.tertiary.main,
@@ -38,7 +38,7 @@ const MenuModeToggle = (props) => {
       <Card className={classes.card}>
         <Toolbar>
         <Typography variant="p" className={classes.text}>
-          Easy OnClick Menu
+          Shortlist Select Mode
         </Typography>
         <Box className={classes.midSpace}></Box>
         <Typography variant='p' className={classes.text}>OFF</Typography>

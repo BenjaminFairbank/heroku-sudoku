@@ -19,6 +19,7 @@ import {
 
 import LoadingCard from '../ui/LoadingCard'
 import MenuModeToggle from '../ui/MenuModeToggle'
+import StatsTracker from '../ui/StatsTracker'
 
 const StyledMenu = withStyles({
   paper: {
@@ -232,7 +233,7 @@ const Board = props => {
 
   return (
     <Container className={classes.container}>
-      <MenuModeToggle />
+      <StatsTracker />
       <Box className={classes.box}>
         <Card className={classes.card}>
           <Grid container spacing={0} className={classes.gridContainer}>
@@ -240,6 +241,7 @@ const Board = props => {
           </Grid>
         </Card>
       </Box>
+      <MenuModeToggle />
     </Container>
   )
 }
