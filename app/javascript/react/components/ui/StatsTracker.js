@@ -34,7 +34,7 @@ const StatsTracker = props => {
 
   let difficulty = 'Easy'
   if (props.gameDifficulty === 2) {
-    difficulty = 'Medium'
+    difficulty = 'Intermediate'
   } else if (props.gameDifficulty === 3){
     difficulty = 'Hard'
   }
