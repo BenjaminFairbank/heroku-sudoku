@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 20,
   },
   box: {
-    height: 340,
-    width: 340,
+    height: 400,
+    width: 400,
     margin: 'auto',
   },
   card: {
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.tertiary.main,
   },
   innerBox: {
-    height: 320,
-    width: 320,
+    height: 380,
+    width: 380,
     margin: 'auto',
   },
 }))
