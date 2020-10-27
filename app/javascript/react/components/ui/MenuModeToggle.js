@@ -5,22 +5,12 @@ import { toggleMenuMode } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import {
-  Typography,
-  Switch,
-  Box,
-  Card,
-  Toolbar
-} from '@material-ui/core'
+import { Typography, Switch, Box, Toolbar } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  box: {
-    width: 340,
-    margin: 'auto',
-    marginTop: 10,
-  },
-  card: {
-    backgroundColor: theme.palette.tertiary.main,
+  toolbar: {
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   midSpace: {
     flexGrow: 1,
@@ -34,9 +24,8 @@ const MenuModeToggle = (props) => {
   const classes = useStyles()
 
   return (
-    <Box className={classes.box}>
-      <Card className={classes.card}>
-        <Toolbar>
+    <Box>
+      <Toolbar disableGutters={true} className={classes.toolbar}>
         <Typography variant='subtitle1' className={classes.text}>
           Shortlist Select Mode
         </Typography>
@@ -48,9 +37,8 @@ const MenuModeToggle = (props) => {
           color="secondary"
           inputProps={{ "aria-label": "primary checkbox" }}
         />
-      <Typography variant='subtitle1' className={classes.text}>ON</Typography>
-        </Toolbar>
-      </Card>
+        <Typography variant='subtitle1' className={classes.text}>ON</Typography>
+      </Toolbar>
     </Box>
   );
 }

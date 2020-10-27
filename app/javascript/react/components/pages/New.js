@@ -11,7 +11,7 @@ import LoadingCard from '../ui/LoadingCard'
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop: 10,
+    paddingTop: 20,
   },
   box: {
     height: 340,

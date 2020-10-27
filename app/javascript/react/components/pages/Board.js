@@ -238,10 +238,10 @@ const Board = props => {
           <Grid container spacing={0} className={classes.gridContainer}>
             {display}
           </Grid>
+          <StatsTracker />
+          <MenuModeToggle />
         </Card>
       </Box>
-      <StatsTracker />
-      <MenuModeToggle />
     </Container>
   )
 }

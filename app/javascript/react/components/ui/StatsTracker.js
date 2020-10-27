@@ -2,22 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Typography,
-  Box,
-  Card,
-  Toolbar
-} from '@material-ui/core'
+import { Typography, Box, Toolbar } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   box: {
-    width: 340,
-    margin: 'auto',
-    marginTop: 10,
-  },
-  card: {
-    padding: 24,
-    backgroundColor: theme.palette.tertiary.main,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 15,
   },
   textLeft: {
     fontWeight: 'bold',
@@ -41,28 +32,27 @@ const StatsTracker = props => {
 
   return (
     <Box className={classes.box}>
-      <Card className={classes.card}>
-        <Typography variant='caption' className={classes.textLeft}>
-          Game difficulty:
-        </Typography>
-        <Typography variant='caption' className={classes.textRight}>
-          {difficulty}
-        </Typography>
-        <br />
-        <Typography variant='caption' className={classes.textLeft}>
-          Empty squares remaining:
-        </Typography>
-        <Typography variant='caption' className={classes.textRight}>
-          {props.squaresLeft}
-        </Typography>
-        <br />
-        <Typography variant='caption' className={classes.textLeft}>
-          Percentage completed:
-        </Typography>
-        <Typography variant='caption' className={classes.textRight}>
-          {props.percentageCompleted}%
-        </Typography>
-      </Card>
+      <Typography variant='caption' className={classes.textLeft}>
+        Game difficulty:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {difficulty}
+      </Typography>
+      <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Empty squares remaining:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {props.squaresLeft}
+      </Typography>
+      <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Percentage completed:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {props.percentageCompleted}%
+      </Typography>
+      <br />
     </Box>
   )
 }
