@@ -5,7 +5,6 @@ import conflictChecker from '../../functions/conflictChecker'
 import useStyles from '../../styles/boardStyles'
 import { withStyles } from '@material-ui/core/styles'
 import {
-  Container,
   Paper,
   Grid,
   Card,
@@ -232,7 +231,7 @@ const Board = props => {
   }
 
   return (
-    <Container className={classes.container}>
+    <Box className={classes.container}>
       <Box className={classes.box}>
         <Card className={classes.card}>
           <Grid container spacing={0} className={classes.gridContainer}>
@@ -242,7 +241,7 @@ const Board = props => {
           <MenuModeToggle />
         </Card>
       </Box>
-    </Container>
+    </Box>
   )
 }
 
