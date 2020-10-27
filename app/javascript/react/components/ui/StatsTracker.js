@@ -42,24 +42,24 @@ const StatsTracker = props => {
   return (
     <Box className={classes.box}>
       <Card className={classes.card}>
-        <Typography variant='p' className={classes.textLeft}>
+        <Typography variant='caption' className={classes.textLeft}>
           Game difficulty:
         </Typography>
-        <Typography variant='p' className={classes.textRight}>
+        <Typography variant='caption' className={classes.textRight}>
           {difficulty}
         </Typography>
         <br />
-        <Typography variant='p' className={classes.textLeft}>
+        <Typography variant='caption' className={classes.textLeft}>
           Empty squares remaining:
         </Typography>
-        <Typography variant='p' className={classes.textRight}>
+        <Typography variant='caption' className={classes.textRight}>
           {props.squaresLeft}
         </Typography>
         <br />
-        <Typography variant='p' className={classes.textLeft}>
+        <Typography variant='caption' className={classes.textLeft}>
           Percentage completed:
         </Typography>
-        <Typography variant='p' className={classes.textRight}>
+        <Typography variant='caption' className={classes.textRight}>
           {props.percentageCompleted}%
         </Typography>
       </Card>

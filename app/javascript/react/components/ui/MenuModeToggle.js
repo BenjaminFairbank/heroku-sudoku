@@ -37,18 +37,18 @@ const MenuModeToggle = (props) => {
     <Box className={classes.box}>
       <Card className={classes.card}>
         <Toolbar>
-        <Typography variant="p" className={classes.text}>
+        <Typography variant='subtitle1' className={classes.text}>
           Shortlist Select Mode
         </Typography>
         <Box className={classes.midSpace}></Box>
-        <Typography variant='p' className={classes.text}>OFF</Typography>
+        <Typography variant='subtitle1' className={classes.text}>OFF</Typography>
         <Switch
           checked={props.easyMenuMode}
           onChange={props.toggleMenuMode}
           color="secondary"
           inputProps={{ "aria-label": "primary checkbox" }}
         />
-        <Typography variant='p' className={classes.text}>ON</Typography>
+      <Typography variant='subtitle1' className={classes.text}>ON</Typography>
         </Toolbar>
       </Card>
     </Box>
