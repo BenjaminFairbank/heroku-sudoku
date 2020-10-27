@@ -1,5 +1,6 @@
 import { displayAlertMessage } from './alertMessage.js'
 import squareCounter from '../functions/squareCounter'
+import organizeBoard from '../functions/organizeBoard'
 
 const initialState = {
   boardSize: 9,
@@ -39,22 +40,7 @@ const game = (state = initialState, action) => {
     case GET_GAME_REQUEST:
       return {...state, isFetching: true }
     case GET_GAME_REQUEST_SUCCESS:
-      let orgGame = action.gameBody
-
-      let orgRowArr = new Array(orgGame.rows.length)
-
-      orgGame.rows.forEach((row) => {
-        orgRowArr.splice(row.index, 1, row)
-      });
-      orgGame["rows"] = orgRowArr
-
-      orgGame.rows.forEach((row) => {
-        let orgSqrArr = new Array(row.squares.length)
-        row.squares.forEach((square) => {
-          orgSqrArr.splice(square.x, 1, square)
-        });
-        row["squares"] = orgSqrArr
-      });
+      const orgGame = organizeBoard(action.gameBody)
       const initialStats = squareCounter(orgGame)
       return {...state,
         gameBody: orgGame,
