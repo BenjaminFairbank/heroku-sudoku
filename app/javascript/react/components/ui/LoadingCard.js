@@ -5,8 +5,8 @@ import { Card, CardMedia } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   loading: {
-    height: 320,
-    width: 320,
+    height: 380,
+    width: 380,
   },
 }))
 

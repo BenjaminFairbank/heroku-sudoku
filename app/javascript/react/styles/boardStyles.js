@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 20,
   },
   box: {
-    width: 340,
+    width: 400,
     margin: 'auto',
   },
   card: {
@@ -14,26 +14,26 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.tertiary.main,
   },
   paper4x4: {
-    height: 77,
-    width: 77,
+    height: 90,
+    width: 90,
+    textAlign: 'center',
+    paddingTop: 10,
+    backgroundColor: theme.palette.quaternary.main,
+    borderRadius: 4,
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+  },
+  paper9x9: {
+    height: 40,
+    width: 40,
     textAlign: 'center',
     paddingTop: 5,
     backgroundColor: theme.palette.quaternary.main,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
   },
-  paper9x9: {
-    height: 34,
-    width: 34,
-    textAlign: 'center',
-    paddingTop: 2,
-    backgroundColor: theme.palette.quaternary.main,
-    borderRadius: 4,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-  },
   gridContainer: {
-    height: 320,
-    width: 320,
+    height: 380,
+    width: 380,
     margin: 'auto',
   },
   text: {
@@ -41,19 +41,19 @@ const useStyles = makeStyles((theme) => ({
   },
   vertDivThick4x4: {
     backgroundColor: theme.palette.tertiary.main,
-    width: 6,
+    width: 10,
   },
   vertDivThin4x4: {
     backgroundColor: theme.palette.tertiary.main,
-    width: 3,
+    width: 5,
   },
   horzDivThick4x4: {
     backgroundColor: theme.palette.tertiary.main,
-    height: 6,
+    height: 10,
   },
   horzDivThin4x4: {
     backgroundColor: theme.palette.tertiary.main,
-    height: 3,
+    height: 5,
   },
   vertDivThick9x9: {
     backgroundColor: theme.palette.tertiary.main,
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   vertDivThin9x9: {
     backgroundColor: theme.palette.tertiary.main,
-    width: 1,
+    width: 2,
   },
   horzDivThick9x9: {
     backgroundColor: theme.palette.tertiary.main,
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
   horzDivThin9x9: {
     backgroundColor: theme.palette.tertiary.main,
-    height: 1,
+    height: 2,
   },
   grid4x4: {
     width: 84,
@@ -78,19 +78,19 @@ const useStyles = makeStyles((theme) => ({
     width: 126,
   },
   selected4x4: {
-    height: 77,
-    width: 77,
+    height: 90,
+    width: 90,
     textAlign: 'center',
     backgroundColor: theme.palette.quinary.main,
-    paddingTop: 5,
+    paddingTop: 10,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
   },
   selected9x9: {
-    height: 34,
-    width: 34,
+    height: 40,
+    width: 40,
     textAlign: 'center',
-    paddingTop: 2,
+    paddingTop: 5,
     backgroundColor: theme.palette.quinary.main,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',

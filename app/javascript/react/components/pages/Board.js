@@ -108,7 +108,7 @@ const Board = props => {
     horzDivThickClass = classes.horzDivThick9x9
     selectedClass = classes.selected9x9
     menuGridWidth = classes.grid9x9
-    fontSize = 'h6'
+    fontSize = 'h5'
     menuGridXs = 4
   }
 
