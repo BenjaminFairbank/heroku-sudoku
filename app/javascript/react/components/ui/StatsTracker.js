@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   box: {
     width: 340,
     margin: 'auto',
-    marginBottom: 10,
+    marginTop: 10,
   },
   card: {
     padding: 24,

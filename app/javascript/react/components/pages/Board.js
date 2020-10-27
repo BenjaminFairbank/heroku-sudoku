@@ -233,7 +233,6 @@ const Board = props => {
 
   return (
     <Container className={classes.container}>
-      <StatsTracker />
       <Box className={classes.box}>
         <Card className={classes.card}>
           <Grid container spacing={0} className={classes.gridContainer}>
@@ -241,6 +240,7 @@ const Board = props => {
           </Grid>
         </Card>
       </Box>
+      <StatsTracker />
       <MenuModeToggle />
     </Container>
   )
