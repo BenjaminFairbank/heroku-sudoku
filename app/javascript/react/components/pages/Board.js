@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getGame, updateBoard } from '../../modules/game'
 import conflictChecker from '../../functions/conflictChecker'
@@ -23,6 +23,14 @@ import StatsTracker from '../ui/StatsTracker'
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
+  },
+  list: {
+    padding: 0,
+    '& .MuiGrid-container':{
+      '&:focus': {
+        outline: 'none',
+      }
+    },
   },
 })((props) => (
   <Menu
@@ -61,14 +69,16 @@ const Board = props => {
 
   useEffect(() => { props.getGame(props.match.params.id) }, [])
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedSquare, setSelectedSquare] = React.useState(null);
-  const [conflicts, setConflicts] = React.useState([])
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedSquare, setSelectedSquare] = useState(null);
+  const [conflicts, setConflicts] = useState([])
 
   const handleClick = (event) => {
+    const x = parseInt(event.currentTarget.id.charAt(0))
+    const y = parseInt(event.currentTarget.id.charAt(1))
     setAnchorEl(event.currentTarget);
-    setSelectedSquare({ x: parseInt(event.currentTarget.id.charAt(0)), y: parseInt(event.currentTarget.id.charAt(1)) })
-    setConflicts(conflictChecker(props.gameBody, parseInt(event.currentTarget.id.charAt(0)), parseInt(event.currentTarget.id.charAt(1))))
+    setSelectedSquare({ x: x, y: y })
+    setConflicts(conflictChecker(props.gameBody, x, y))
   }
 
   const handleClose = () => {
@@ -96,7 +106,7 @@ const Board = props => {
   let  horzDivThinClass = classes.horzDivThin4x4
   let  horzDivThickClass = classes.horzDivThick4x4
   let  selectedClass = classes.selected4x4
-  let  menuGridWidth = classes.grid4x4
+  let  menuGrid = classes.menuGrid4x4
   let  fontSize = 'h2'
   let  menuGridXs = 6
   if (props.boardSize === 9) {
@@ -106,7 +116,7 @@ const Board = props => {
     horzDivThinClass = classes.horzDivThin9x9
     horzDivThickClass = classes.horzDivThick9x9
     selectedClass = classes.selected9x9
-    menuGridWidth = classes.grid9x9
+    menuGrid = classes.menuGrid9x9
     fontSize = 'h5'
     menuGridXs = 4
   }
@@ -123,9 +133,7 @@ const Board = props => {
         if (props.easyMenuMode && conflicts.includes(num)) {
           return (
             <Grid item xs={4}>
-              <div className={classes.emptyOption}>
-                <Typography variant='p'>&nbsp;</Typography>
-              </div>
+              <Box className={classes.emptyOption}></Box>
             </Grid>
           )
         } else {
@@ -171,7 +179,7 @@ const Board = props => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <Grid container spacing={0} className={menuGridWidth}>
+              <Grid container spacing={0} className={menuGrid}>
                 <Grid item xs={12}>
                   <StyledMenuItem id=' ' onClick={handlePickValue}>
                     <ListItemText primary='?' />

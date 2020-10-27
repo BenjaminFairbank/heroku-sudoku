@@ -71,10 +71,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.tertiary.main,
     height: 2,
   },
-  grid4x4: {
+  menuGrid4x4: {
     width: 84,
   },
-  grid9x9: {
+  menuGrid9x9: {
     width: 126,
   },
   selected4x4: {
