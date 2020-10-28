@@ -1,18 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: 20,
-  },
-  box: {
-    width: 400,
-    margin: 'auto',
-  },
-  card: {
-    flexGrow: 1,
-    padding: 10,
-    backgroundColor: theme.palette.tertiary.main,
-  },
   paper4x4: {
     height: 90,
     width: 90,

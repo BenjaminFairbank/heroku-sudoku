@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { getGame, updateBoard } from '../../modules/game'
+import { updateBoard } from '../../modules/game'
 import conflictChecker from '../../functions/conflictChecker'
 import useStyles from '../../styles/boardStyles'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Paper,
   Grid,
-  Card,
   Typography,
   Box,
   Menu,
@@ -15,10 +14,7 @@ import {
   ListItemIcon,
   ListItemText
 } from '@material-ui/core'
-
 import LoadingCard from '../ui/LoadingCard'
-import MenuModeToggle from '../ui/MenuModeToggle'
-import StatsTracker from '../ui/StatsTracker'
 
 const StyledMenu = withStyles({
   paper: {
@@ -66,8 +62,6 @@ const StyledMenuItem = withStyles((theme) => ({
 
 const Board = props => {
   const classes = useStyles()
-
-  useEffect(() => { props.getGame(props.match.params.id) }, [])
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedSquare, setSelectedSquare] = useState(null);
@@ -121,7 +115,8 @@ const Board = props => {
     menuGridXs = 4
   }
 
-  const reverseDividerRange = Array.from({length: props.boardSize - 1}, (_, i) => i + 1).reverse()
+  const divRange = Array.from({length: props.boardSize - 1}, (_, i) => i + 1)
+  const reverseDividerRange = divRange.reverse()
 
   let boardMap = props.gameBody.rows.map(row => {
 
@@ -132,9 +127,7 @@ const Board = props => {
       const menuGridOptions = range.map((num) => {
         if (props.easyMenuMode && conflicts.includes(num)) {
           return (
-            <Grid item xs={4}>
-              <Box className={classes.emptyOption}></Box>
-            </Grid>
+            <Grid item xs={4}><Box className={classes.emptyOption}></Box></Grid>
           )
         } else {
           return (
@@ -204,11 +197,7 @@ const Board = props => {
       }
     })
 
-    return (
-      <Grid container item xs={12} spacing={0}>
-        {formRow}
-      </Grid>
-    )
+    return <Grid container item xs={12} spacing={0}>{formRow}</Grid>
   })
 
   const smallHorizontalDivider =
@@ -229,28 +218,12 @@ const Board = props => {
     }
   })
 
-  if (anchorEl !== null) {
-    anchorEl.className = selectedClass
-  }
+  if (anchorEl !== null) { anchorEl.className = selectedClass }
 
   let display = <LoadingCard />
-  if (props.gameBody.rows.length !== 0) {
-    display = boardMap
-  }
+  if (props.gameBody.rows.length !== 0) { display = boardMap }
 
-  return (
-    <Box className={classes.container}>
-      <Box className={classes.box}>
-        <Card className={classes.card}>
-          <Grid container spacing={0} className={classes.gridContainer}>
-            {display}
-          </Grid>
-          <StatsTracker />
-          <MenuModeToggle />
-        </Card>
-      </Box>
-    </Box>
-  )
+  return <Grid container className={classes.gridContainer}>{display}</Grid>
 }
 
 const mapStateToProps = state => {
@@ -263,10 +236,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    getGame: (gameId) => dispatch(getGame(gameId)),
-    updateBoard: (gameData) => dispatch(updateBoard(gameData))
-  }
+  return { updateBoard: (gameData) => dispatch(updateBoard(gameData)) }
 }
 
 export default connect(

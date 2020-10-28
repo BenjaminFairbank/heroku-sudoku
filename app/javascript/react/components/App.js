@@ -9,7 +9,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import Home from './pages/Home'
 import New from './pages/New'
-import Board from './pages/Board'
+import Game from './pages/Game'
 
 import TopBar from './ui/TopBar'
 import ScrollUpButton from './ui/ScrollUpButton'
@@ -60,7 +60,7 @@ export const App = props => {
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />
             <Route exact path='/games/new' component={New} />
-            <Route exact path='/games/:id' component={Board} />
+            <Route exact path='/games/:id' component={Game} />
           </Switch>
         </BrowserRouter>
         <HowToPlay />
