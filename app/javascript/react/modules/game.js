@@ -10,7 +10,8 @@ const initialState = {
   isFetching: false,
   easyMenuMode: false,
   percentageCompleted: 0,
-  squaresLeft: 0
+  squaresLeft: 0,
+  completionData: null
 }
 
 const game = (state = initialState, action) => {
@@ -56,6 +57,8 @@ const game = (state = initialState, action) => {
       return initialState
     case TOGGLE_MENU_MODE:
       return {...state, easyMenuMode: !state.easyMenuMode }
+    case UPDATE_COMPLETED_AREAS:
+      return {...state, completionData: action.completionData }
     default:
       return state
   }
@@ -154,6 +157,15 @@ const toggleMenuMode = () => {
   }
 }
 
+const UPDATE_COMPLETED_AREAS = 'UPDATE_COMPLETED_AREAS'
+
+const updateCompletedAreas = completionData => {
+  return {
+    type: UPDATE_COMPLETED_AREAS,
+    completionData
+  }
+}
+
 const postGame = (gameData) => {
   return dispatch => {
     dispatch(postGameRequest())
@@ -225,5 +237,6 @@ export {
   updateBoard,
   getGame,
   resetGame,
-  toggleMenuMode
+  toggleMenuMode,
+  updateCompletedAreas
 }

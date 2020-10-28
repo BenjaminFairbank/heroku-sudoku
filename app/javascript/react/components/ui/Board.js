@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { updateBoard } from '../../modules/game'
+import { updateBoard, updateCompletedAreas } from '../../modules/game'
 import conflictChecker from '../../functions/conflictChecker'
+import completionChecker from '../../functions/completionChecker'
 import useStyles from '../../styles/boardStyles'
 import { withStyles } from '@material-ui/core/styles'
 import {
@@ -72,7 +73,7 @@ const Board = props => {
     const y = parseInt(event.currentTarget.id.charAt(1))
     setAnchorEl(event.currentTarget);
     setSelectedSquare({ x: x, y: y })
-    setConflicts(conflictChecker(props.gameBody, x, y))
+    setConflicts(conflictChecker(props.gameBody, props.boardSize, x, y))
   }
 
   const handleClose = () => {
@@ -92,6 +93,7 @@ const Board = props => {
       value: event.currentTarget.id
     })
     handleClose()
+    props.updateCompletedAreas(completionChecker(props.gameBody, props.boardSize))
   }
 
   let  paperClass = classes.paper4x4
@@ -231,12 +233,16 @@ const mapStateToProps = state => {
     gameBody: state.game.gameBody,
     boardSize: state.game.boardSize,
     isFetching: state.game.isFetching,
-    easyMenuMode: state.game.easyMenuMode
+    easyMenuMode: state.game.easyMenuMode,
+    completionData: state.game.completionData
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return { updateBoard: (gameData) => dispatch(updateBoard(gameData)) }
+  return {
+    updateBoard: (gameData) => dispatch(updateBoard(gameData)),
+    updateCompletedAreas: (gameData) => dispatch(updateCompletedAreas(gameData))
+  }
 }
 
 export default connect(
