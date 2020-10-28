@@ -30,6 +30,15 @@ const StatsTracker = props => {
     difficulty = 'Hard'
   }
 
+  let numBoxsDone = 0
+  let numRowsDone = 0
+  let numColsDone = 0
+  if (props.completionData !== null) {
+    numBoxsDone = props.completionData.boxes.filter(box => box === true).length
+    numRowsDone = props.completionData.rows.filter(row => row === true).length
+    numColsDone = props.completionData.columns.filter(col => col === true).length
+  }
+
   return (
     <Box className={classes.box}>
       <Typography variant='caption' className={classes.textLeft}>
@@ -53,6 +62,27 @@ const StatsTracker = props => {
         {props.percentageCompleted}%
       </Typography>
       <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Rows completed:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {numRowsDone}/{props.boardSize}
+      </Typography>
+      <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Columns completed:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {numColsDone}/{props.boardSize}
+      </Typography>
+      <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Boxes completed:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {numBoxsDone}/{props.boardSize}
+      </Typography>
+      <br />
     </Box>
   )
 }
@@ -61,7 +91,9 @@ const mapStateToProps = (state) => {
   return {
     percentageCompleted: state.game.percentageCompleted,
     squaresLeft: state.game.squaresLeft,
-    gameDifficulty: state.game.gameDifficulty
+    gameDifficulty: state.game.gameDifficulty,
+    completionData: state.game.completionData,
+    boardSize: state.game.boardSize
   }
 }
 
