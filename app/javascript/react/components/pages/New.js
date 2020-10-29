@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { postGame } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Box, Card } from '@material-ui/core'
+import { Box, Card } from '@material-ui/core'
 
 import LoadingCard from '../ui/LoadingCard'
 
@@ -41,7 +41,7 @@ const New = props => {
   }, [])
 
   let display =
-    <Container className={classes.container}>
+    <Box className={classes.container}>
       <Box className={classes.box}>
         <Card className={classes.card}>
           <Box className={classes.innerBox}>
@@ -49,7 +49,7 @@ const New = props => {
           </Box>
         </Card>
       </Box>
-    </Container>
+    </Box>
 
   if ( props.gameId !== null && !props.isFetching) {
     display = <Redirect to={`/games/${props.gameId}`} />

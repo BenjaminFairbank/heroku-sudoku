@@ -129,7 +129,7 @@ const Board = props => {
       const menuGridOptions = range.map((num) => {
         if (props.easyMenuMode && conflicts.includes(num)) {
           return (
-            <Grid item xs={4}><Box className={classes.emptyOption}></Box></Grid>
+            <Grid item xs={menuGridXs}></Grid>
           )
         } else {
           return (
