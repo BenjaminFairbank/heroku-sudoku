@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { updateBoard, updateCompletedAreas } from '../../modules/game'
+import { updateBoard } from '../../modules/game'
 import conflictChecker from '../../functions/conflictChecker'
-import completionChecker from '../../functions/completionChecker'
 import useStyles from '../../styles/boardStyles'
 import { withStyles } from '@material-ui/core/styles'
 import {
@@ -47,7 +46,9 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
+    padding: '0px 16px 0px 14px',
     '& .MuiListItemText-primary': {
+      fontSize: 24,
       fontWeight: 'bold',
       textAlign: 'center',
     },
@@ -93,7 +94,6 @@ const Board = props => {
       value: event.currentTarget.id
     })
     handleClose()
-    props.updateCompletedAreas(completionChecker(props.gameBody, props.boardSize))
   }
 
   let  paperClass = classes.paper4x4
@@ -129,7 +129,9 @@ const Board = props => {
       const menuGridOptions = range.map((num) => {
         if (props.easyMenuMode && conflicts.includes(num)) {
           return (
-            <Grid item xs={menuGridXs}></Grid>
+            <Grid item xs={menuGridXs}>
+              <Box className={classes.emptyOption}></Box>
+            </Grid>
           )
         } else {
           return (
@@ -239,10 +241,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    updateBoard: (gameData) => dispatch(updateBoard(gameData)),
-    updateCompletedAreas: (gameData) => dispatch(updateCompletedAreas(gameData))
-  }
+  return { updateBoard: (gameData) => dispatch(updateBoard(gameData)) }
 }
 
 export default connect(

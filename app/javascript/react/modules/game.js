@@ -1,6 +1,7 @@
 import { displayAlertMessage } from './alertMessage.js'
 import squareCounter from '../functions/squareCounter'
 import organizeBoard from '../functions/organizeBoard'
+import completionChecker from '../functions/completionChecker'
 
 const initialState = {
   boardSize: 9,
@@ -33,10 +34,12 @@ const game = (state = initialState, action) => {
       let board = state.gameBody
       board.rows[action.boardData.y].squares[action.boardData.x].value = action.boardData.value
       const updatedStats = squareCounter(board)
+      const compData = completionChecker(state.gameBody, state.boardSize)
       return {...state,
         gameBody: board,
         percentageCompleted: updatedStats.percentageCompleted,
-        squaresLeft: updatedStats.squaresLeft
+        squaresLeft: updatedStats.squaresLeft,
+        completionData: compData
       }
     case GET_GAME_REQUEST:
       return {...state, isFetching: true }
@@ -57,8 +60,6 @@ const game = (state = initialState, action) => {
       return initialState
     case TOGGLE_MENU_MODE:
       return {...state, easyMenuMode: !state.easyMenuMode }
-    case UPDATE_COMPLETED_AREAS:
-      return {...state, completionData: action.completionData }
     default:
       return state
   }
@@ -157,15 +158,6 @@ const toggleMenuMode = () => {
   }
 }
 
-const UPDATE_COMPLETED_AREAS = 'UPDATE_COMPLETED_AREAS'
-
-const updateCompletedAreas = completionData => {
-  return {
-    type: UPDATE_COMPLETED_AREAS,
-    completionData
-  }
-}
-
 const postGame = (gameData) => {
   return dispatch => {
     dispatch(postGameRequest())
@@ -237,6 +229,5 @@ export {
   updateBoard,
   getGame,
   resetGame,
-  toggleMenuMode,
-  updateCompletedAreas
+  toggleMenuMode
 }

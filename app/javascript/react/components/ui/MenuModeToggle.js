@@ -27,7 +27,7 @@ const MenuModeToggle = (props) => {
     <Box>
       <Toolbar disableGutters={true} className={classes.toolbar}>
         <Typography variant='subtitle1' className={classes.text}>
-          Shortlist Select Mode
+          Shortlist Selection Mode
         </Typography>
         <Box className={classes.midSpace}></Box>
         <Typography variant='subtitle1' className={classes.text}>OFF</Typography>
