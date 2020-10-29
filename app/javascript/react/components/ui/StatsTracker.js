@@ -18,6 +18,18 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     float: 'right',
   },
+  completed: {
+    color: theme.palette.primary.main,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingBottom: 8,
+  },
+  notCompleted: {
+    color: 'red',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingBottom: 8,
+  }
 }))
 
 const StatsTracker = props => {
@@ -33,33 +45,38 @@ const StatsTracker = props => {
   let numBoxsDone = 0
   let numRowsDone = 0
   let numColsDone = 0
+  let completionMessage
+
   if (props.completionData !== null) {
     numBoxsDone = props.completionData.boxes.filter(box => box === true).length
     numRowsDone = props.completionData.rows.filter(row => row === true).length
     numColsDone = props.completionData.columns.filter(col => col === true).length
+    if (props.squaresLeft === 0) {
+      if (props.completionData.completed) {
+        completionMessage =
+          <Typography variant='subtitle2' className={classes.completed}>
+            Congratulations! You solved the puzzle successfully!
+          </Typography>
+      } else {
+        completionMessage =
+          <Typography variant='subtitle2' className={classes.notCompleted}>
+            All tiles have been filled but there are conflicts.
+          </Typography>
+      }
+    }
   }
+
+
+
 
   return (
     <Box className={classes.box}>
+      {completionMessage}
       <Typography variant='caption' className={classes.textLeft}>
         Game difficulty:
       </Typography>
       <Typography variant='caption' className={classes.textRight}>
         {difficulty}
-      </Typography>
-      <br />
-      <Typography variant='caption' className={classes.textLeft}>
-        Empty squares remaining:
-      </Typography>
-      <Typography variant='caption' className={classes.textRight}>
-        {props.squaresLeft}
-      </Typography>
-      <br />
-      <Typography variant='caption' className={classes.textLeft}>
-        Percentage completed:
-      </Typography>
-      <Typography variant='caption' className={classes.textRight}>
-        {props.percentageCompleted}%
       </Typography>
       <br />
       <Typography variant='caption' className={classes.textLeft}>
@@ -81,6 +98,20 @@ const StatsTracker = props => {
       </Typography>
       <Typography variant='caption' className={classes.textRight}>
         {numBoxsDone}/{props.boardSize}
+      </Typography>
+      <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Empty tiles remaining:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {props.squaresLeft}
+      </Typography>
+      <br />
+      <Typography variant='caption' className={classes.textLeft}>
+        Percentage completed:
+      </Typography>
+      <Typography variant='caption' className={classes.textRight}>
+        {props.percentageCompleted}%
       </Typography>
       <br />
     </Box>

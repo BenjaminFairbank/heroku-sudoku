@@ -100,11 +100,18 @@ const completionChecker = (body, size) => {
     completedColumns.push(col8.sort().toString() === list)
     completedColumns.push(col9.sort().toString() === list)
   }
-  
+
+  const completed = (
+    completedColumns.filter(col => col === true).length === size
+    && completedRows.filter(row => row === true).length === size
+    && completedBoxes.filter(box => box === true).length === size
+  )
+
   return ({
     boxes: completedBoxes,
     rows: completedRows,
-    columns: completedColumns
+    columns: completedColumns,
+    completed: completed
   })
 }
 
