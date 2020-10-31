@@ -69,19 +69,25 @@ const useStyles = makeStyles((theme) => ({
     height: 90,
     width: 90,
     textAlign: 'center',
-    backgroundColor: theme.palette.quinary.main,
+    backgroundColor: theme.palette.secondary.main,
     paddingTop: 10,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+    '& .MuiTypography-root': {
+      color: theme.palette.primary.main,
+    }
   },
   selected9x9: {
     height: 40,
     width: 40,
     textAlign: 'center',
     paddingTop: 5,
-    backgroundColor: theme.palette.quinary.main,
+    backgroundColor: theme.palette.secondary.main,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+    '& .MuiTypography-root': {
+      color: theme.palette.primary.main,
+    }
   },
   emptyOption: {
     width: 42,
