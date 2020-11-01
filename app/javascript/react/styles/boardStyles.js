@@ -95,10 +95,12 @@ const useStyles = makeStyles((theme) => ({
     height: 44,
   },
   note4x4: {
+    color: 'white',
     fontSize: 32,
     fontWeight: 'bolder',
   },
   note9x9: {
+    color: 'white',
     fontSize: 10,
     fontWeight: 'bolder',
   },
