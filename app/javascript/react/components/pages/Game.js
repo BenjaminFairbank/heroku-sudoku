@@ -5,7 +5,6 @@ import { getGame } from '../../modules/game'
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, Box } from '@material-ui/core'
 
-import MenuModeToggle from '../ui/MenuModeToggle'
 import StatsTracker from '../ui/StatsTracker'
 import Board from '../ui/Board'
 
@@ -35,7 +34,6 @@ const Game = props => {
         <Card className={classes.card}>
           <Board />
           <StatsTracker />
-          <MenuModeToggle />
         </Card>
       </Box>
     </Box>

@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme) => ({
     height: 90,
     width: 90,
     textAlign: 'center',
-    paddingTop: 10,
     backgroundColor: theme.palette.quaternary.main,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
@@ -14,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     height: 40,
     width: 40,
     textAlign: 'center',
-    paddingTop: 5,
     backgroundColor: theme.palette.quaternary.main,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
@@ -24,8 +22,13 @@ const useStyles = makeStyles((theme) => ({
     width: 380,
     margin: 'auto',
   },
-  text: {
+  text4x4: {
     color: 'white',
+    paddingTop: 10,
+  },
+  text9x9: {
+    color: 'white',
+    paddingTop: 5,
   },
   vertDivThick4x4: {
     backgroundColor: theme.palette.tertiary.main,
@@ -70,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
     width: 90,
     textAlign: 'center',
     backgroundColor: theme.palette.secondary.main,
-    paddingTop: 10,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
     '& .MuiTypography-root': {
@@ -81,7 +83,6 @@ const useStyles = makeStyles((theme) => ({
     height: 40,
     width: 40,
     textAlign: 'center',
-    paddingTop: 5,
     backgroundColor: theme.palette.secondary.main,
     borderRadius: 4,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
@@ -92,7 +93,25 @@ const useStyles = makeStyles((theme) => ({
   emptyOption: {
     width: 42,
     height: 44,
-  }
+  },
+  note4x4: {
+    fontSize: 32,
+    fontWeight: 'bolder',
+  },
+  note9x9: {
+    fontSize: 10,
+    fontWeight: 'bolder',
+  },
+  noteBox4x4: {
+    height: 45,
+    width: 45,
+    margin: 'auto'
+  },
+  noteBox9x9: {
+    height: 13.3,
+    width: 13.3,
+    margin: 'auto'
+  },
 }))
 
 export default useStyles

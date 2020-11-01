@@ -10,6 +10,7 @@ const initialState = {
   gameId: null,
   isFetching: false,
   easyMenuMode: false,
+  noteTakingMode: false,
   percentageCompleted: 0,
   squaresLeft: 0,
   completionData: null
@@ -32,7 +33,19 @@ const game = (state = initialState, action) => {
       return {...state, isFetching: false }
     case UPDATE_BOARD:
       let board = state.gameBody
-      board.rows[action.boardData.y].squares[action.boardData.x].value = action.boardData.value
+      const square = board.rows[action.boardData.y].squares[action.boardData.x]
+      if (state.noteTakingMode) {
+        let notesArray = square.notes.split('')
+        if (notesArray.includes(action.boardData.value)) {
+          notesArray.splice(parseInt(action.boardData.value) - 1, 1, '.')
+        } else {
+          notesArray.splice(parseInt(action.boardData.value) - 1, 1, action.boardData.value)
+        }
+        square.notes = notesArray.join('')
+      } else {
+        square.value = action.boardData.value
+        square.notes = Array(state.boardSize).fill('.').join('')
+      }
       const updatedStats = squareCounter(board)
       const compData = completionChecker(state.gameBody, state.boardSize)
       return {...state,
@@ -60,6 +73,8 @@ const game = (state = initialState, action) => {
       return initialState
     case TOGGLE_MENU_MODE:
       return {...state, easyMenuMode: !state.easyMenuMode }
+    case TOGGLE_NOTES_MODE:
+      return {...state, noteTakingMode: !state.noteTakingMode }
     default:
       return state
   }
@@ -158,6 +173,14 @@ const toggleMenuMode = () => {
   }
 }
 
+const TOGGLE_NOTES_MODE = 'TOGGLE_NOTES_MODE'
+
+const toggleNotesMode = () => {
+  return {
+    type: TOGGLE_NOTES_MODE
+  }
+}
+
 const postGame = (gameData) => {
   return dispatch => {
     dispatch(postGameRequest())
@@ -229,5 +252,6 @@ export {
   updateBoard,
   getGame,
   resetGame,
-  toggleMenuMode
+  toggleMenuMode,
+  toggleNotesMode
 }
