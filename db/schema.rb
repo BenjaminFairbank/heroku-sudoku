@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_032350) do
+ActiveRecord::Schema.define(version: 2020_10_31_135725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_032350) do
     t.integer "y", null: false
     t.string "value", null: false
     t.boolean "given", null: false
+    t.string "notes"
     t.index ["row_id"], name: "index_squares_on_row_id"
   end
 

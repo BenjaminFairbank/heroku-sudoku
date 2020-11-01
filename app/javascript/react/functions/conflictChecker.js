@@ -18,7 +18,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index < 3) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x < 3 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -31,7 +31,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 3 && row.index < 6) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x < 3 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -44,7 +44,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 6) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x < 3 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -57,7 +57,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index < 3) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 3 && square.x < 6 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -70,7 +70,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 3 && row.index < 6) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 3 && square.x < 6 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -83,7 +83,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 6) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 3 && square.x < 6 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -96,7 +96,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index < 3) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 6 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -109,7 +109,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 3 && row.index < 6) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 6 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -122,7 +122,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 6) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 6 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -138,7 +138,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index < 2) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x < 2 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -151,7 +151,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 2) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x < 2 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -164,7 +164,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index < 2) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 2 && square.value !== ' ') {
             boxOutlaws.push(square.value)
@@ -177,7 +177,7 @@ const conflictChecker = (body, size, x, y) => {
       const selectRows = body.rows.filter((row) => {
         if (row.index >= 2) { return row }
       })
-      const box = selectRows.forEach((row) => {
+      selectRows.forEach((row) => {
         row.squares.forEach((square) => {
           if (square.x >= 2 && square.value !== ' ') {
             boxOutlaws.push(square.value)

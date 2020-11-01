@@ -1,8 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { toggleNotesMode } from '../../modules/game'
+import { toggleMenuMode } from '../../modules/game'
+
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography, Box, Toolbar } from '@material-ui/core'
+import { Typography, Switch, Box } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -29,7 +32,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     textAlign: 'center',
     paddingBottom: 8,
-  }
+  },
+  switchBox: {
+    float: 'right',
+  },
+  switchText: {
+    fontWeight: 'bold',
+    display: 'inline-block',
+  },
+  switchTitle: {
+    height: 38,
+    fontWeight: 'bold',
+    float: 'left',
+    paddingTop: 8,
+  },
 }))
 
 const StatsTracker = props => {
@@ -55,7 +71,7 @@ const StatsTracker = props => {
       if (props.completionData.completed) {
         completionMessage =
           <Typography variant='subtitle2' className={classes.completed}>
-            Congratulations! You solved the puzzle successfully!
+            Congratulations! You solved the puzzle!
           </Typography>
       } else {
         completionMessage =
@@ -66,12 +82,40 @@ const StatsTracker = props => {
     }
   }
 
-
-
-
   return (
     <Box className={classes.box}>
       {completionMessage}
+      <Box>
+        <Typography variant='subtitle2' className={classes.switchTitle}>
+          Note Taking Mode
+        </Typography>
+        <Box className={classes.switchBox}>
+          <Typography variant='caption' className={classes.switchText}>OFF</Typography>
+          <Switch
+            checked={props.noteTakingMode}
+            onChange={props.toggleNotesMode}
+            color="secondary"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+        <Typography variant='caption' className={classes.switchText}>ON</Typography>
+        </Box>
+      </Box>
+      <Box>
+        <Typography variant='subtitle2' className={classes.switchTitle}>
+          Shortlist Selection Mode
+        </Typography>
+        <Box className={classes.switchBox}>
+          <Typography variant='caption' className={classes.switchText}>OFF</Typography>
+          <Switch
+            checked={props.easyMenuMode}
+            onChange={props.toggleMenuMode}
+            color="secondary"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+        <Typography variant='caption' className={classes.switchText}>ON</Typography>
+        </Box>
+      </Box>
+      <br /><br /><br /><br />
       <Typography variant='caption' className={classes.textLeft}>
         Game difficulty:
       </Typography>
@@ -124,11 +168,20 @@ const mapStateToProps = (state) => {
     squaresLeft: state.game.squaresLeft,
     gameDifficulty: state.game.gameDifficulty,
     completionData: state.game.completionData,
-    boardSize: state.game.boardSize
+    boardSize: state.game.boardSize,
+    noteTakingMode: state.game.noteTakingMode,
+    easyMenuMode: state.game.easyMenuMode
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleNotesMode: () => dispatch(toggleNotesMode()),
+    toggleMenuMode: () => dispatch(toggleMenuMode())
   }
 }
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(StatsTracker)

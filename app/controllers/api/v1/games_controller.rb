@@ -21,12 +21,18 @@ class Api::V1::GamesController < ApplicationController
         new_row = Row.create(game_id: new_game.id, index: row_counter)
         column_counter = 0
         size.times do
+          notes = []
+          size.times do
+            notes << '.'
+          end
+          notes = notes.join('')
           new_square = Square.create(
             row_id: new_row.id,
             x: column_counter,
             y: row_counter,
             value: " ",
-            given: false
+            given: false,
+            notes: notes
           )
           column_counter += 1
         end

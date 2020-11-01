@@ -96,15 +96,18 @@ const Board = props => {
     handleClose()
   }
 
-  let  paperClass = classes.paper4x4
-  let  vertDivThinClass = classes.vertDivThin4x4
-  let  vertDivThickClass = classes.vertDivThick4x4
-  let  horzDivThinClass = classes.horzDivThin4x4
-  let  horzDivThickClass = classes.horzDivThick4x4
-  let  selectedClass = classes.selected4x4
-  let  menuGrid = classes.menuGrid4x4
-  let  fontSize = 'h2'
-  let  menuGridXs = 6
+  let paperClass = classes.paper4x4
+  let vertDivThinClass = classes.vertDivThin4x4
+  let vertDivThickClass = classes.vertDivThick4x4
+  let horzDivThinClass = classes.horzDivThin4x4
+  let horzDivThickClass = classes.horzDivThick4x4
+  let selectedClass = classes.selected4x4
+  let menuGrid = classes.menuGrid4x4
+  let fontSize = 'h2'
+  let menuGridXs = 6
+  let noteClass = classes.note4x4
+  let noteBox = classes.noteBox4x4
+  let textClass = classes.text4x4
   if (props.boardSize === 9) {
     paperClass = classes.paper9x9
     vertDivThinClass = classes.vertDivThin9x9
@@ -115,6 +118,9 @@ const Board = props => {
     menuGrid = classes.menuGrid9x9
     fontSize = 'h5'
     menuGridXs = 4
+    noteBox = classes.noteBox9x9
+    noteClass = classes.note9x9
+    textClass = classes.text9x9
   }
 
   const divRange = Array.from({length: props.boardSize - 1}, (_, i) => i + 1)
@@ -144,30 +150,62 @@ const Board = props => {
         }
       })
 
+      let chooseBlank =
+        <Grid item xs={12}>
+          <StyledMenuItem id=' ' onClick={handlePickValue}>
+            <ListItemText primary='?' />
+          </StyledMenuItem>
+        </Grid>
+      if (props.noteTakingMode) { chooseBlank = ''}
+
+      const notesArray = square.notes.split('').map((note) => {
+        if (note === '.') { return ' ' } else { return note }
+      })
+
+      const notesGridItems = notesArray.map((note) => {
+        return (
+          <Grid item xs={menuGridXs}>
+            <Box className={noteBox}>
+              <Typography className={noteClass}>{note}</Typography>
+            </Box>
+          </Grid>
+        )
+      })
+
+      let innerSquare =
+        <Typography variant={fontSize} className={textClass}>
+          <Box fontWeight="fontWeightLight">{square.value}</Box>
+        </Typography>
+      if (square.value === ' ') {
+        innerSquare = <Grid container>{notesGridItems}</Grid>
+      }
+
       if (square.given) {
         return (
-          <Grid item xs={2.999}>
+          <Grid item>
             <Paper className={paperClass}>
-              <Typography variant={fontSize} className={classes.text}>
+              <Typography variant={fontSize} className={textClass}>
                 <Box fontWeight="fontWeightBold">{square.value}</Box>
               </Typography>
             </Paper>
           </Grid>
         )
       } else {
+        let clickFunction = handleClick
+        if (props.noteTakingMode && square.value !== ' ') {
+          clickFunction = (()=>{})
+        }
         return (
-          <Grid item xs={2.999}>
+          <Grid item>
             <Paper
               className={paperClass}
               aria-controls="customized-menu"
               aria-haspopup="true"
               color="primary"
-              onClick={handleClick}
+              onClick={clickFunction}
               id={`${square.x}${square.y}`}
             >
-              <Typography variant={fontSize} className={classes.text}>
-                <Box fontWeight="fontWeightLight">{square.value}</Box>
-              </Typography>
+              {innerSquare}
             </Paper>
             <StyledMenu
               id="customized-menu"
@@ -177,11 +215,7 @@ const Board = props => {
               onClose={handleClose}
             >
               <Grid container spacing={0} className={menuGrid}>
-                <Grid item xs={12}>
-                  <StyledMenuItem id=' ' onClick={handlePickValue}>
-                    <ListItemText primary='?' />
-                  </StyledMenuItem>
-                </Grid>
+                {chooseBlank}
                 {menuGridOptions}
               </Grid>
             </StyledMenu>
@@ -236,7 +270,8 @@ const mapStateToProps = state => {
     boardSize: state.game.boardSize,
     isFetching: state.game.isFetching,
     easyMenuMode: state.game.easyMenuMode,
-    completionData: state.game.completionData
+    completionData: state.game.completionData,
+    noteTakingMode: state.game.noteTakingMode
   }
 }
 
