@@ -15,7 +15,7 @@ import {
   Button,
   Box
 } from '@material-ui/core'
-import { Brightness2, BrightnessMedium } from '@material-ui/icons'
+import { Brightness2, BrightnessHigh } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +77,7 @@ const TopBar = (props) => {
                 Heroku Sudoku
               </Typography>
               <Box variant="h6" className={classes.midSpace}></Box>
-              <BrightnessMedium />
+              <BrightnessHigh />
               <Switch
                 checked={props.darkMode}
                 onChange={props.toggleDarkMode}
