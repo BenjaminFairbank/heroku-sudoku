@@ -85,7 +85,6 @@ const TopBar = (props) => {
                 inputProps={{ "aria-label": "primary checkbox" }}
               />
               <Brightness2 />
-              <Button className={classes.button} color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
         </ElevationScroll>
@@ -94,6 +93,9 @@ const TopBar = (props) => {
     </>
   );
 }
+
+// Login button to be inserted below <Brightness2 /> when user features become active:
+// <Button className={classes.button} color="inherit">Login</Button>
 
 const mapStateToProps = (state) => {
   return {
