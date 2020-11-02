@@ -133,7 +133,7 @@ const Board = props => {
       const range = Array.from({length: props.boardSize}, (_, i) => i + 1)
 
       const menuGridOptions = range.map((num) => {
-        if (conflicts.includes(num) && (props.easyMenuMode || props.noteTakingMode)) {
+        if (conflicts.includes(num) && (props.easyMenuMode || (props.noteTakingMode && props.autoUpdateNotesMode))) {
           return (
             <Grid item xs={menuGridXs}>
               <Box className={classes.emptyOption}></Box>
@@ -271,7 +271,8 @@ const mapStateToProps = state => {
     isFetching: state.game.isFetching,
     easyMenuMode: state.game.easyMenuMode,
     completionData: state.game.completionData,
-    noteTakingMode: state.game.noteTakingMode
+    noteTakingMode: state.game.noteTakingMode,
+    autoUpdateNotesMode: state.game.autoUpdateNotesMode
   }
 }
 

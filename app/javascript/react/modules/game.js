@@ -12,7 +12,7 @@ const initialState = {
   isFetching: false,
   easyMenuMode: false,
   noteTakingMode: false,
-  autoUpdateNotesMode: true,
+  autoUpdateNotesMode: false,
   percentageCompleted: 0,
   squaresLeft: 0,
   completionData: null
