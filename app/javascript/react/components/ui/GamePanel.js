@@ -49,12 +49,11 @@ const GamePanel = props => {
     message = 'Congratulations! You solved the puzzle!'
   }
 
-  if (props.squaresLeft && props.squaresLeft === 0) {
-    completionMessage = (
+  if (props.squaresLeft === 0) {
+    completionMessage =
       <Typography variant='subtitle2' className={textClass}>
         {message}
       </Typography>
-    )
   }
 
   return (
