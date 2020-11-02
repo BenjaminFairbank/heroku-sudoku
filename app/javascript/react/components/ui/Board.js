@@ -133,7 +133,7 @@ const Board = props => {
       const range = Array.from({length: props.boardSize}, (_, i) => i + 1)
 
       const menuGridOptions = range.map((num) => {
-        if (props.easyMenuMode && conflicts.includes(num)) {
+        if (conflicts.includes(num) && (props.easyMenuMode || props.noteTakingMode)) {
           return (
             <Grid item xs={menuGridXs}>
               <Box className={classes.emptyOption}></Box>

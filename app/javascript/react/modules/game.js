@@ -2,6 +2,7 @@ import { displayAlertMessage } from './alertMessage.js'
 import squareCounter from '../functions/squareCounter'
 import organizeBoard from '../functions/organizeBoard'
 import completionChecker from '../functions/completionChecker'
+import updateNotes from '../functions/updateNotes'
 
 const initialState = {
   boardSize: 9,
@@ -11,6 +12,7 @@ const initialState = {
   isFetching: false,
   easyMenuMode: false,
   noteTakingMode: false,
+  autoUpdateNotesMode: true,
   percentageCompleted: 0,
   squaresLeft: 0,
   completionData: null
@@ -48,6 +50,7 @@ const game = (state = initialState, action) => {
       }
       const updatedStats = squareCounter(board)
       const compData = completionChecker(state.gameBody, state.boardSize)
+      if (state.autoUpdateNotesMode) { board = updateNotes(board, state.boardSize) }
       return {...state,
         gameBody: board,
         percentageCompleted: updatedStats.percentageCompleted,
@@ -75,6 +78,8 @@ const game = (state = initialState, action) => {
       return {...state, easyMenuMode: !state.easyMenuMode }
     case TOGGLE_NOTES_MODE:
       return {...state, noteTakingMode: !state.noteTakingMode }
+    case TOGGLE_UPDATE_NOTES_MODE:
+      return {...state, autoUpdateNotesMode: !state.autoUpdateNotesMode }
     default:
       return state
   }
@@ -181,6 +186,14 @@ const toggleNotesMode = () => {
   }
 }
 
+const TOGGLE_UPDATE_NOTES_MODE = 'TOGGLE_UPDATE_NOTES_MODE'
+
+const toggleUpdateNotesMode = () => {
+  return {
+    type: TOGGLE_UPDATE_NOTES_MODE
+  }
+}
+
 const postGame = (gameData) => {
   return dispatch => {
     dispatch(postGameRequest())
@@ -253,5 +266,6 @@ export {
   getGame,
   resetGame,
   toggleMenuMode,
-  toggleNotesMode
+  toggleNotesMode,
+  toggleUpdateNotesMode
 }

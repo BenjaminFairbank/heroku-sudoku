@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { toggleNotesMode } from '../../modules/game'
 import { toggleMenuMode } from '../../modules/game'
+import { toggleUpdateNotesMode } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Switch, Box } from '@material-ui/core'
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   box: {
     paddingLeft: 10,
     paddingRight: 10,
-    marginTop: 15,
+    marginTop: 10,
   },
   textLeft: {
     fontWeight: 'bold',
@@ -39,12 +40,13 @@ const useStyles = makeStyles((theme) => ({
   switchText: {
     fontWeight: 'bold',
     display: 'inline-block',
+    paddingTop: 4,
   },
   switchTitle: {
     height: 38,
     fontWeight: 'bold',
     float: 'left',
-    paddingTop: 8,
+    paddingTop: 10,
   },
 }))
 
@@ -99,7 +101,22 @@ const StatsTracker = props => {
           />
         <Typography variant='caption' className={classes.switchText}>ON</Typography>
         </Box>
-      </Box>
+      </Box><br /><br />
+      <Box>
+        <Typography variant='subtitle2' className={classes.switchTitle}>
+          Auto-Update Notes
+        </Typography>
+        <Box className={classes.switchBox}>
+          <Typography variant='caption' className={classes.switchText}>OFF</Typography>
+          <Switch
+            checked={props.autoUpdateNotesMode}
+            onChange={props.toggleUpdateNotesMode}
+            color="secondary"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+        <Typography variant='caption' className={classes.switchText}>ON</Typography>
+        </Box>
+      </Box><br /><br />
       <Box>
         <Typography variant='subtitle2' className={classes.switchTitle}>
           Shortlist Selection Mode
@@ -114,8 +131,7 @@ const StatsTracker = props => {
           />
         <Typography variant='caption' className={classes.switchText}>ON</Typography>
         </Box>
-      </Box>
-      <br /><br /><br /><br />
+      </Box><br /><br />
       <Typography variant='caption' className={classes.textLeft}>
         Game difficulty:
       </Typography>
@@ -170,14 +186,16 @@ const mapStateToProps = (state) => {
     completionData: state.game.completionData,
     boardSize: state.game.boardSize,
     noteTakingMode: state.game.noteTakingMode,
-    easyMenuMode: state.game.easyMenuMode
+    easyMenuMode: state.game.easyMenuMode,
+    autoUpdateNotesMode: state.game.autoUpdateNotesMode
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleNotesMode: () => dispatch(toggleNotesMode()),
-    toggleMenuMode: () => dispatch(toggleMenuMode())
+    toggleMenuMode: () => dispatch(toggleMenuMode()),
+    toggleUpdateNotesMode: () => dispatch(toggleUpdateNotesMode())
   }
 }
 
