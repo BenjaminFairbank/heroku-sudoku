@@ -33,7 +33,7 @@ export const App = props => {
         main: '#5d7578'
       },
       quinary: {
-        main: '#216f91'
+        main: '#ef3054'
       },
       type: props.darkMode ? "dark" : "light",
     },
