@@ -5,8 +5,8 @@ import { getGame } from '../../modules/game'
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, Box } from '@material-ui/core'
 
-import StatsTracker from '../ui/StatsTracker'
-import Board from '../ui/Board'
+import GameBoard from '../ui/GameBoard'
+import GamePanel from '../ui/GamePanel'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,8 +32,8 @@ const Game = props => {
     <Box className={classes.container}>
       <Box className={classes.box}>
         <Card className={classes.card}>
-          <Board />
-          <StatsTracker />
+          <GameBoard />
+          <GamePanel />
         </Card>
       </Box>
     </Box>

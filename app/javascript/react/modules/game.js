@@ -14,7 +14,7 @@ const initialState = {
   noteTakingMode: false,
   autoUpdateNotesMode: false,
   percentageCompleted: 0,
-  squaresLeft: 0,
+  squaresLeft: null,
   completionData: null
 }
 

@@ -62,7 +62,7 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem)
 
-const Board = props => {
+const GameBoard = props => {
   const classes = useStyles()
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -283,4 +283,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Board)
+)(GameBoard)
