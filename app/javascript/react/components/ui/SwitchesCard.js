@@ -40,16 +40,19 @@ const SwitchesCard = props => {
 
   const modeSwitches = [
     {
+      id: 1,
       title: 'Note-Taking Mode',
       checked: props.noteTakingMode,
       onChange: props.toggleNotesMode,
     },
     {
+      id: 2,
       title: 'Auto-Update Notes',
       checked: props.autoUpdateNotesMode,
       onChange: props.toggleUpdateNotesMode,
     },
     {
+      id: 3,
       title: 'Shortlist-Selection Mode',
       checked: props.easyMenuMode,
       onChange: props.toggleMenuMode,
@@ -58,7 +61,7 @@ const SwitchesCard = props => {
 
   const switchesDisplay = modeSwitches.map((mode) => {
     return (
-      <Box className={classes.outerBox}>
+      <Box key={mode.id} className={classes.outerBox}>
         <Typography variant='subtitle2' className={classes.title}>
           {mode.title}
         </Typography>
