@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -44,26 +44,32 @@ const StatsCard = props => {
 
   let trackedStats = [
     {
+      id: 1,
       title: 'Game difficulty:',
       value: difficulty
     },
     {
+      id: 2,
       title: 'Rows completed:',
       value: `${numRowsDone}/${props.boardSize}`
     },
     {
+      id: 3,
       title: 'Columns completed:',
       value: `${numColsDone}/${props.boardSize}`
     },
     {
+      id: 4,
       title: 'Boxes completed:',
       value: `${numBoxsDone}/${props.boardSize}`
     },
     {
+      id: 5,
       title: 'Empty tiles remaining:',
       value: props.squaresLeft
     },
     {
+      id: 6,
       title: 'Percentage completed:',
       value: `${props.percentageCompleted}%`
     },
@@ -71,7 +77,7 @@ const StatsCard = props => {
 
   let statsDisplay = trackedStats.map((stat) => {
     return (
-      <>
+      <Fragment key={stat.id}>
         <Typography variant='caption' className={classes.textLeft}>
           {stat.title}
         </Typography>
@@ -79,7 +85,7 @@ const StatsCard = props => {
           {stat.value}
         </Typography>
         <br />
-      </>
+      </Fragment>
     )
   })
 
