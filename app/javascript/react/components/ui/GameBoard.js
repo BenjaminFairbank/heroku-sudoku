@@ -11,7 +11,6 @@ import {
   Box,
   Menu,
   MenuItem,
-  ListItemIcon,
   ListItemText
 } from '@material-ui/core'
 import LoadingCard from '../ui/LoadingCard'
@@ -135,13 +134,13 @@ const GameBoard = props => {
       const menuGridOptions = range.map((num) => {
         if (conflicts.includes(num) && (props.easyMenuMode || (props.noteTakingMode && props.autoUpdateNotesMode))) {
           return (
-            <Grid item xs={menuGridXs}>
+            <Grid item xs={menuGridXs} key={num}>
               <Box className={classes.emptyOption}></Box>
             </Grid>
           )
         } else {
           return (
-            <Grid item xs={menuGridXs}>
+            <Grid item xs={menuGridXs} key={num}>
               <StyledMenuItem id={num.toString()} onClick={handlePickValue}>
                 <ListItemText primary={num.toString()} />
               </StyledMenuItem>
@@ -162,11 +161,16 @@ const GameBoard = props => {
         if (note === '.') { return ' ' } else { return note }
       })
 
-      const notesGridItems = notesArray.map((note) => {
+      let newNotesArray = []
+      notesArray.forEach((note, i) => {
+        newNotesArray.push({ id: i, value: note })
+      })
+
+      const notesGridItems = newNotesArray.map((note) => {
         return (
-          <Grid item xs={menuGridXs}>
+          <Grid item xs={menuGridXs} key={note.id}>
             <Box className={noteBox}>
-              <Typography className={noteClass}>{note}</Typography>
+              <Typography className={noteClass}>{note.value}</Typography>
             </Box>
           </Grid>
         )
@@ -182,7 +186,7 @@ const GameBoard = props => {
 
       if (square.given) {
         return (
-          <Grid item>
+          <Grid item key={square.x}>
             <Paper className={paperClass}>
               <Typography variant={fontSize} className={textClass}>
                 <Box fontWeight="fontWeightBold">{square.value}</Box>
@@ -196,7 +200,7 @@ const GameBoard = props => {
           clickFunction = (()=>{})
         }
         return (
-          <Grid item>
+          <Grid item key={square.x}>
             <Paper
               className={paperClass}
               aria-controls="customized-menu"
@@ -214,7 +218,7 @@ const GameBoard = props => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <Grid container spacing={0} className={menuGrid}>
+              <Grid container className={menuGrid}>
                 {chooseBlank}
                 {menuGridOptions}
               </Grid>
@@ -224,35 +228,42 @@ const GameBoard = props => {
       }
     })
 
-    const smallVerticalDivider = <div className={vertDivThinClass}></div>
-    const largeVerticalDivider = <div className={vertDivThickClass}></div>
-
-    reverseDividerRange.forEach((value) => {
+    reverseDividerRange.forEach((value, i) => {
       if (value%Math.sqrt(props.boardSize) === 0) {
-        formRow.splice(value, 0, largeVerticalDivider)
+        formRow.splice(
+          value,
+          0,
+          <Box key={i+props.boardSize} className={vertDivThickClass}></Box>
+        )
       } else {
-        formRow.splice(value, 0, smallVerticalDivider)
+        formRow.splice(
+          value,
+          0,
+          <Box key={i+props.boardSize} className={vertDivThinClass}></Box>
+        )
       }
     })
 
-    return <Grid container item xs={12} spacing={0}>{formRow}</Grid>
+    return <Grid container item xs={12} key={row.index}>{formRow}</Grid>
   })
 
-  const smallHorizontalDivider =
-    <Grid container item xs={12} spacing={0}>
-      <div className={horzDivThinClass}></div>
-    </Grid>
-
-  const largeHorizontalDivider =
-    <Grid container item xs={12} spacing={0}>
-      <div className={horzDivThickClass}></div>
-    </Grid>
-
-  reverseDividerRange.forEach((value) => {
+  reverseDividerRange.forEach((value, i) => {
     if (value%Math.sqrt(props.boardSize) === 0) {
-      boardMap.splice(value, 0, largeHorizontalDivider)
+      boardMap.splice(
+        value,
+        0,
+        <Grid container item xs={12} key={i+props.boardSize}>
+          <Box className={horzDivThickClass}></Box>
+        </Grid>
+      )
     } else {
-      boardMap.splice(value, 0, smallHorizontalDivider)
+      boardMap.splice(
+        value,
+        0,
+        <Grid container item xs={12} key={i+props.boardSize}>
+          <Box className={horzDivThinClass}></Box>
+        </Grid>
+      )
     }
   })
 
