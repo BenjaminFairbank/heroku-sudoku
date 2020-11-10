@@ -217,7 +217,7 @@ const postGame = (gameData) => {
     })
     .then(gameBody => {
       if(!gameBody.error) {
-        dispatch(postGameRequestSuccess(gameBody.id))
+        dispatch(postGameRequestSuccess(gameBody))
       } else {
         dispatch(postGameRequestFailure())
         dispatch(displayAlertMessage(gameBody.error))
