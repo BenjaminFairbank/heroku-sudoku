@@ -1,6 +1,6 @@
 # Heroku Sudoku
 
-Sudoku is single player game similar to a crossword puzzle.
+Sudoku is a single player game similar to a crossword puzzle.
 
 If you are unfamiliar with sudoku, find out more here: https://en.wikipedia.org/wiki/Sudoku
 
@@ -55,7 +55,8 @@ The test suite can be run by executing:
 
   `$ rspec`
 
-Status: [![Codeship Status for BenjaminFairbank/heroku-sudoku](https://app.codeship.com/projects/d97cbb50-ec07-0138-82eb-22560eb9152f/status?branch=master)](https://app.codeship.com/projects/413191)
+Status:
+[![Codeship Status for BenjaminFairbank/heroku-sudoku](https://app.codeship.com/projects/d97cbb50-ec07-0138-82eb-22560eb9152f/status?branch=master)](https://app.codeship.com/projects/413191)
 
 
 ## To Do
@@ -78,7 +79,7 @@ The documentation can be viewed here: http://www.cs.utep.edu/cheon/ws/sudoku/
 
 While the this API is free and does not require any key, IT IS NOT PERFECT and very, very rarely can supply bad game data, or fail to respond.
 
-Having said that, I am eternally grateful to Professor Cheon for hosting this free service!
+Having said that, I am eternally grateful to Professor Cheon of UTEP's CS department for this API service!
 
 
 ## Inspiration
@@ -87,4 +88,5 @@ This project was inspired by a few sudoku algorithm practice challenges complete
 
 ![CodeWars Badge](https://www.codewars.com/users/BenjaminFairbank/badges/large)
 
-#### Please enjoy this application! Any regards can be directed to benfairbank26@gmail.com
+
+### Please enjoy this application! Any regards can be directed to benfairbank26@gmail.com
