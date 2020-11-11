@@ -1,7 +1,4 @@
-# HEROKU SUDOKU
-================================================================================
-
-[![Codeship Status for BenjaminFairbank/heroku-sudoku](https://app.codeship.com/projects/d97cbb50-ec07-0138-82eb-22560eb9152f/status?branch=master)](https://app.codeship.com/projects/413191)
+# Heroku Sudoku
 
 Sudoku is single player game similar to a crossword puzzle.
 
@@ -58,20 +55,22 @@ The test suite can be run by executing:
 
   `$ rspec`
 
+Status: [![Codeship Status for BenjaminFairbank/heroku-sudoku](https://app.codeship.com/projects/d97cbb50-ec07-0138-82eb-22560eb9152f/status?branch=master)](https://app.codeship.com/projects/413191)
 
-# To Do
 
-Update 'How to play' section
-Front-end user features (sign-in/up etc.)
-Save, reset, undo buttons
-Timer
-High Scores (times) for Users
-Media query/flexibility of board display size.
-Expand dark mode functionality
+## To Do
+
+ - Update 'How to play' section
+ - Front-end user features (sign-in/up etc.)
+ - Save, reset, undo buttons
+ - Timer
+ - High Scores (times) for users
+ - Media query/flexibility of board display size.
+ - Expand dark mode functionality
 ...
 
 
-### Notes on third-party API:
+## Notes on third-party API:
 
 This project relies heavily on the The University of Texas at El Paso's Sudoku Web Service API to generate games.
 
@@ -86,6 +85,6 @@ Having said that, I am eternally grateful to Professor Cheon for hosting this fr
 
 This project was inspired by a few sudoku algorithm practice challenges completed at codewars.com
 
-Please enjoy this application! Any regards can be directed to benfairbank26@gmail.com
-
 ![CodeWars Badge](https://www.codewars.com/users/BenjaminFairbank/badges/large)
+
+#### Please enjoy this application! Any regards can be directed to benfairbank26@gmail.com
