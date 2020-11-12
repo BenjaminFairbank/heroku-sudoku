@@ -1,10 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Fab from '@material-ui/core/Fab'
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
 import Zoom from '@material-ui/core/Zoom'
 

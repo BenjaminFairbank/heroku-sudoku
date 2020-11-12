@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Provider, connect } from 'react-redux'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
