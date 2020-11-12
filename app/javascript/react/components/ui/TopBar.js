@@ -5,14 +5,12 @@ import { Link } from 'react-router-dom'
 import { toggleDarkMode } from '../../modules/app'
 
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import {
   AppBar,
   Toolbar,
   Typography,
   useScrollTrigger,
   Switch,
-  Button,
   Box
 } from '@material-ui/core'
 import { Brightness2, BrightnessHigh } from '@material-ui/icons'
