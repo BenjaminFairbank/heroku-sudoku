@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.quaternary.main,
   },
   outerBox: {
-    height: 38,
+    height: 26,
   },
   title: {
-    height: 38,
+    height: 26,
     fontWeight: 'bold',
     color: 'white',
     float: 'left',
-    paddingTop: 10,
+    paddingTop: 3
   },
   switchBox: {
     float: 'right',
@@ -78,8 +78,9 @@ const SwitchesCard = props => {
             onChange={mode.onChange}
             color="secondary"
             inputProps={{ "aria-label": "primary checkbox" }}
+            size='small'
           />
-        <Typography variant='caption' className={classes.text}>
+          <Typography variant='caption' className={classes.text}>
             ON
           </Typography>
         </Box>

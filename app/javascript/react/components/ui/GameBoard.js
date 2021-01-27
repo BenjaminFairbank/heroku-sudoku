@@ -155,7 +155,7 @@ const GameBoard = props => {
             <ListItemText primary='?' />
           </StyledMenuItem>
         </Grid>
-      if (props.noteTakingMode) { chooseBlank = ''}
+      if (props.noteTakingMode) { chooseBlank = '' }
 
       const notesArray = square.notes.split('').map((note) => {
         if (note === '.') { return ' ' } else { return note }
