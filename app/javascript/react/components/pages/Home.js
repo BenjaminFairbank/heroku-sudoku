@@ -3,17 +3,17 @@ import { connect } from 'react-redux'
 import { setSize, setDifficulty, resetGame } from '../../modules/game'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Typography,
-  Container,
-  Box,
-  Paper,
-  Button,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select
-} from "@material-ui/core";
+
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+
 import GridOnIcon from '@material-ui/icons/GridOn'
 
 const useStyles = makeStyles((theme) => ({

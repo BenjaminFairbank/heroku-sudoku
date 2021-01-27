@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { postGame } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Card } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import Card from '@material-ui/core/Card'
 
 import LoadingCard from '../ui/LoadingCard'
 

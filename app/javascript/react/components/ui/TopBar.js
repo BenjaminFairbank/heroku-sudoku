@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom'
 import { toggleDarkMode } from '../../modules/app'
 
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  useScrollTrigger,
-  Switch,
-  Box
-} from '@material-ui/core'
-import { Brightness2, BrightnessHigh } from '@material-ui/icons'
+
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import useScrollTrigger from '@material-ui/core/useScrollTrigger'
+import Switch from '@material-ui/core/Switch'
+import Box from '@material-ui/core/Box'
+
+import Brightness2Icon from '@material-ui/icons/Brightness2'
+import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,14 +76,14 @@ const TopBar = (props) => {
                 Heroku Sudoku
               </Typography>
               <Box variant="h6" className={classes.midSpace}></Box>
-              <BrightnessHigh />
+              <BrightnessHighIcon />
               <Switch
                 checked={props.darkMode}
                 onChange={props.toggleDarkMode}
                 color="secondary"
                 inputProps={{ "aria-label": "primary checkbox" }}
               />
-              <Brightness2 />
+              <Brightness2Icon />
             </Toolbar>
           </AppBar>
         </ElevationScroll>

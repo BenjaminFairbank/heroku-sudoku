@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { getGame } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Card, Box } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import Card from '@material-ui/core/Card'
 
 import GameBoard from '../ui/GameBoard'
 import GamePanel from '../ui/GamePanel'

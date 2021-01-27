@@ -6,7 +6,11 @@ import { toggleMenuMode } from '../../modules/game'
 import { toggleUpdateNotesMode } from '../../modules/game'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography, Switch, Box, Card } from '@material-ui/core'
+
+import Typography from '@material-ui/core/Typography'
+import Switch from '@material-ui/core/Switch'
+import Box from '@material-ui/core/Box'
+import Card from '@material-ui/core/Card'
 
 const useStyles = makeStyles((theme) => ({
   card: {
