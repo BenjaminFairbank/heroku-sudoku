@@ -4,15 +4,15 @@ import { updateBoard } from '../../modules/game'
 import conflictChecker from '../../functions/conflictChecker'
 import useStyles from '../../styles/boardStyles'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  Paper,
-  Grid,
-  Typography,
-  Box,
-  Menu,
-  MenuItem,
-  ListItemText
-} from '@material-ui/core'
+
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemText from '@material-ui/core/ListItemText'
+
 import LoadingCard from '../ui/LoadingCard'
 
 const StyledMenu = withStyles({

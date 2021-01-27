@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
 
 import SwitchesCard from './SwitchesCard'
 import StatsCard from './StatsCard'

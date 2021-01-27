@@ -6,7 +6,11 @@ import select from '../../../../assets/images/Select.png';
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Typography, Container, Box, Card, CardMedia } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import Card from '@material-ui/core/Card'
+import CardMedia from '@material-ui/core/CardMedia'
 
 const useStyles = makeStyles((theme) => ({
   container: {
