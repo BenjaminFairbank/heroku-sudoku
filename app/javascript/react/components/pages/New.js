@@ -55,10 +55,8 @@ const New = props => {
   if ( props.gameId !== null && !props.isFetching) {
     display = <Redirect to={`/games/${props.gameId}`} />
   }
-
-  return (
-    <>{display}</>
-  )
+  
+  return <>{display}</>
 }
 
 const mapStateToProps = (state) => {

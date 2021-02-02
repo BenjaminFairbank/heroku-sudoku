@@ -7,7 +7,6 @@ import Zoom from '@material-ui/core/Zoom'
 
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',

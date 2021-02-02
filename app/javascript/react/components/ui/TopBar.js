@@ -63,7 +63,7 @@ const TopBar = (props) => {
 
   return (
     <>
-      <div className={classes.root}>
+      <Box className={classes.root}>
         <ElevationScroll {...props}>
           <AppBar>
             <Toolbar>
@@ -87,14 +87,11 @@ const TopBar = (props) => {
             </Toolbar>
           </AppBar>
         </ElevationScroll>
-      </div>
+      </Box>
       <Toolbar id="back-to-top-anchor" />
     </>
   );
 }
-
-// Login button to be inserted below <Brightness2 /> when user features become active:
-// <Button className={classes.button} color="inherit">Login</Button>
 
 const mapStateToProps = (state) => {
   return {
