@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.quaternary.main,
   },
   outerBox: {
-    height: 26,
+    height: 27,
   },
   title: {
-    height: 26,
+    height: 27,
     fontWeight: 'bold',
     color: 'white',
     float: 'left',
