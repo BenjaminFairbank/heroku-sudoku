@@ -10,7 +10,7 @@ It can be visited at: https://herokusudoku.herokuapp.com
 
 ## WARNING!
 
-Unfortunately, the API which generated fresh games sudoku games has been discontinued!  The only way to enjoy the application now is to visit the old saved games which are still very playable.  To play Heroku Sudoku simply go to herokusudoku.herokuapp.com/games/[ID], substituting [ID] with one of the follwing game ids: [68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155].  Sorry for the inconvenience!  Enjoy!
+Unfortunately, the API which generated fresh sudoku games has been discontinued!  The only way to enjoy the application now is to visit the old saved games which are still very playable.  To play Heroku Sudoku simply go to herokusudoku.herokuapp.com/games/[ID], substituting [ID] with one of the follwing game ids: [68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155].  Sorry for the inconvenience!  Enjoy!
 
 
 ### Stack:
